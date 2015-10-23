@@ -157,14 +157,7 @@ public class frmLogueo extends javax.swing.JFrame {
 
     private void cmdAccesarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdAccesarActionPerformed
         try {
-            // TODO add your handling code here:
-            
-            
-//            File archivoConexion = new File("Conexion.xml");
-//            
-//            if (archivoConexion.exists())
-//                System.out.println("El fichero");
-//            else
+     
             crearXML2();
             
             conexion con = new conexion();
@@ -177,12 +170,15 @@ public class frmLogueo extends javax.swing.JFrame {
             leerConfiguracion();
             frmPrincipal principal= new frmPrincipal();
             classUsuarios usuarios = new classUsuarios();
-            if (usuarios.blnChecaUsuarioContra("SELECT * FROM Usuarios where Usuario='"+this.txtUsuario.getText() +"' and Contra='"+this.pswContraseña.getText()+"'")==true){
+            if (usuarios.blnChecaUsuarioContra("SELECT * FROM Usuarios "
+                    + "where Usuario='"+
+                    this.txtUsuario.getText() +"' and Contra='"
+                    +this.pswContraseña.getText()+"'")==true){
                 this.setVisible(false);
                 principal.setVisible(true);
             }
             else
-                JOptionPane.showMessageDialog(null, "USUARIO O CONTRASEÑA INCORRECTO"+this.pswContraseña.getText());
+                JOptionPane.showMessageDialog(null, "USUARIO O CONTRASEÑA INCORRECTO ");
                   System.out.println("SELECT * FROM Usuarios where Usuario='"+this.txtUsuario.getText() +"' and Contra='"+this.pswContraseña.getText()+"'");
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(frmLogueo.class.getName()).log(Level.SEVERE, null, ex);
