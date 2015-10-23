@@ -181,9 +181,9 @@ control_existencias ctrl = new control_existencias();
     }//GEN-LAST:event_BuscararticulosActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-    frmActualizarstock stock = new frmActualizarstock();
-    jDesktopPane1.add(stock);
-    stock.show();
+//    frmActualizarstock stock = new frmActualizarstock();
+//    jDesktopPane1.add(stock);
+//    stock.show();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
