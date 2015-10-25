@@ -179,7 +179,7 @@ public class frmLogueo extends javax.swing.JFrame {
             }
             else
                 JOptionPane.showMessageDialog(null, "USUARIO O CONTRASEÑA INCORRECTO ");
-                  System.out.println("SELECT * FROM Usuarios where Usuario='"+this.txtUsuario.getText() +"' and Contra='"+this.pswContraseña.getText()+"'");
+                  //System.out.println("SELECT * FROM Usuarios where Usuario='"+this.txtUsuario.getText() +"' and Contra='"+this.pswContraseña.getText()+"'");
         } catch (ParserConfigurationException ex) {
             Logger.getLogger(frmLogueo.class.getName()).log(Level.SEVERE, null, ex);
         } catch (TransformerException ex) {
