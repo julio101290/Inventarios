@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 23-10-2015 a las 07:36:22
+-- Tiempo de generación: 27-10-2015 a las 07:32:32
 -- Versión del servidor: 5.6.25
 -- Versión de PHP: 5.6.11
 
@@ -68,7 +68,7 @@ DELIMITER ;
 --
 
 CREATE TABLE IF NOT EXISTS `Clientes` (
-  `idCliente` bigint(20) NOT NULL,
+  `idCliente` bigint(20) unsigned zerofill NOT NULL,
   `Nombres` varchar(100) DEFAULT NULL,
   `Apellidos` varchar(45) DEFAULT NULL,
   `Direccion` varchar(45) DEFAULT NULL,
@@ -79,7 +79,16 @@ CREATE TABLE IF NOT EXISTS `Clientes` (
   `Estado` varchar(45) DEFAULT NULL,
   `Municipio` varchar(45) DEFAULT NULL,
   `CodigoPostal` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Clientes`
+--
+
+INSERT INTO `Clientes` (`idCliente`, `Nombres`, `Apellidos`, `Direccion`, `Ciudad`, `Telefono`, `RFC`, `FechaNacimiento`, `Estado`, `Municipio`, `CodigoPostal`) VALUES
+(00000000000000000001, '', '', '', '', '', '', '2015-10-12 00:00:00.000000', '', '', ''),
+(00000000000000000002, '', '', '', '', '', '', '2015-10-02 00:00:00.000000', '', '', ''),
+(00000000000000000003, '', '', '', '', '', '', '2015-10-13 00:00:00.000000', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -106,6 +115,12 @@ INSERT INTO `Usuarios` (`idUsuario`, `Usuario`, `Contra`, `Grupo`) VALUES
 --
 
 --
+-- Indices de la tabla `Clientes`
+--
+ALTER TABLE `Clientes`
+  ADD UNIQUE KEY `idCliente` (`idCliente`);
+
+--
 -- Indices de la tabla `Usuarios`
 --
 ALTER TABLE `Usuarios`
@@ -116,6 +131,11 @@ ALTER TABLE `Usuarios`
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
+--
+-- AUTO_INCREMENT de la tabla `Clientes`
+--
+ALTER TABLE `Clientes`
+  MODIFY `idCliente` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT de la tabla `Usuarios`
 --
