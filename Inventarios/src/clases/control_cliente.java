@@ -44,8 +44,9 @@ public String strFechaNacimiento;
                  + ",'"+strApellido+"','"+strDomicilio+"','"+strCiudad+"','" +strTelefono+"',"
                  + "'"+strRFC+"','"+strFechaNacimiento+"','"+strEstado+"','"
                  +strMunicipio+"','"+strCodigoPostal+"');";
+         System.out.println(strSQL);
          sql.ejecutarQuery(strSQL);
-         
+         System.out.println(strSQL);
          return true;
     }
     
