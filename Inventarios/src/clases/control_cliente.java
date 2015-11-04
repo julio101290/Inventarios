@@ -4,6 +4,7 @@
  */
 package clases;
 
+import herramientas.conexion;
 import java.sql.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -28,11 +29,15 @@ public String strRFC;
 public String strTelefono;
 public String strFechaNacimiento;
 
+private conexion con;
+PreparedStatement ps;
+ResultSet res;
        
 
     public control_cliente() {
         
         sql = new Sentencias_sql();
+        con = new conexion();
     }   
     
         
@@ -56,6 +61,33 @@ public String strFechaNacimiento;
         return datos;
     }
      
-    
+    public void leerClientes(int intDesde ,int intCuantos,DefaultTableModel tablaClientes ){
+        String strConsulta;
+        String datos[]=new String [4];
+       // strConsulta="call PA_LeeClientes(" + intDesde +"," +","+ intCuantos+")";
+        strConsulta="call PA_LeeClientes(1,5);";
+        
+        
+        try{
+         
+         ps= con.conectado().prepareStatement(strConsulta);
+         res = ps.executeQuery();
+         
+         while(res.next()){
+              //System.out.println(res.getString("Nombres"));
+              datos[0]=res.getString("IdCliente");
+              datos[1]=res.getString("Nombres");
+              datos[2]=res.getString("Apellidos");
+              datos[3]=res.getString("RFC");
+              
+              tablaClientes.addRow(datos);
+         }
+         res.close();
+          }catch(SQLException e){
+         System.out.println(e);
+        
+    }
+        
+}
     
 }

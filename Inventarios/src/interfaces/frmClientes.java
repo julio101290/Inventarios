@@ -424,9 +424,16 @@ public final class frmClientes extends javax.swing.JInternalFrame {
 
     public void defineTablaClientes(){
         DefaultTableModel tablaClientes = new DefaultTableModel();
-        String strTitulos[]={"NOMBRE","APELLIDO","RFC","DOMICILIO"};
+        String strTitulos[]={"ID CLIENTE","NOMBRE","APELLIDO","RFC"};
         tablaClientes.setColumnIdentifiers(strTitulos);
         this.JTabClientes.setModel(tablaClientes);
+        control_cliente classCliente= new control_cliente();
+        classCliente.leerClientes(1, 5,tablaClientes);
+        
+        this.JTabClientes.setModel(tablaClientes);
+      
+        //JOptionPane.showInternalMessageDialog(rootPane,tablaClientes.getRowCount());
+        
     }
     
     private void salirclijButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirclijButton3ActionPerformed
