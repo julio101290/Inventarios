@@ -16,27 +16,23 @@ public final class frmClientes extends javax.swing.JInternalFrame {
         initComponents();    
         limpiar();
         bloquear_cajas();
+        defineTablaClientes();
         
+      //Object[] tipo_doc = ctrl.combox("tipo_de_documento","id_tipo_documento");
+               // combo_tipo.removeAllItems();
+        //        for(int i=0;i<tipo_doc.length;i++){
+        //       // combo_tipo.addItem(tipo_doc[i]);
+        //       control_cliente clientes = new control_cliente(); 
+        //       //clientes.ingresar_cliente()
+        //                    
+        //    }
         
-        
-        
-        
-        
-        Object[] tipo_doc = ctrl.combox("tipo_de_documento","id_tipo_documento");
-       // combo_tipo.removeAllItems();
-        for(int i=0;i<tipo_doc.length;i++){
-       // combo_tipo.addItem(tipo_doc[i]);
-       control_cliente clientes = new control_cliente(); 
-       //clientes.ingresar_cliente()
-                    
-    }
-        
-        Object[] ciu = ctrl.combox("ciudad","Codigo_ciudad");
-       // ciudad_combo.removeAllItems();
-        for(int i=0;i<ciu.length;i++){
-       // ciudad_combo.addItem(ciu[i]);
-        
-    }
+        //        Object[] ciu = ctrl.combox("ciudad","Codigo_ciudad");
+        //       // ciudad_combo.removeAllItems();
+        //        for(int i=0;i<ciu.length;i++){
+        //       // ciudad_combo.addItem(ciu[i]);
+        //        
+        //    }
     }
 
     
@@ -72,7 +68,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
         txtCodigoPostal = new javax.swing.JTextField();
         PanTabla = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        JTabClientes = new javax.swing.JTable();
         PanBotones = new javax.swing.JPanel();
         regclientejButton1 = new javax.swing.JButton();
         cancelclijButton2 = new javax.swing.JButton();
@@ -253,7 +249,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
 
         TabDatos.addTab("Localización", jPanel3);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        JTabClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -264,7 +260,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(JTabClientes);
 
         javax.swing.GroupLayout PanTablaLayout = new javax.swing.GroupLayout(PanTabla);
         PanTabla.setLayout(PanTablaLayout);
@@ -430,7 +426,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
         DefaultTableModel tablaClientes = new DefaultTableModel();
         String strTitulos[]={"NOMBRE","APELLIDO","RFC","DOMICILIO"};
         tablaClientes.setColumnIdentifiers(strTitulos);
-        this.TabDatos.setModel((SingleSelectionModel) tablaClientes);
+        this.JTabClientes.setModel(tablaClientes);
     }
     
     private void salirclijButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirclijButton3ActionPerformed
@@ -455,6 +451,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtApellidosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable JTabClientes;
     private javax.swing.JPanel PanBotones;
     private javax.swing.JPanel PanTabla;
     private javax.swing.JTabbedPane TabDatos;
@@ -475,7 +472,6 @@ public final class frmClientes extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton regclientejButton1;
     private javax.swing.JButton salirclijButton3;
     private javax.swing.JTextField txtApellidos;
