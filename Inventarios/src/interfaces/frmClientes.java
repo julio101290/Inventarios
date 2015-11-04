@@ -6,6 +6,8 @@ import clases.control_existencias;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.SingleSelectionModel;
+import javax.swing.table.DefaultTableModel;
 
 public final class frmClientes extends javax.swing.JInternalFrame {
 
@@ -15,12 +17,18 @@ public final class frmClientes extends javax.swing.JInternalFrame {
         limpiar();
         bloquear_cajas();
         
+        
+        
+        
+        
+        
         Object[] tipo_doc = ctrl.combox("tipo_de_documento","id_tipo_documento");
        // combo_tipo.removeAllItems();
         for(int i=0;i<tipo_doc.length;i++){
        // combo_tipo.addItem(tipo_doc[i]);
-            
-  
+       control_cliente clientes = new control_cliente(); 
+       //clientes.ingresar_cliente()
+                    
     }
         
         Object[] ciu = ctrl.combox("ciudad","Codigo_ciudad");
@@ -418,6 +426,13 @@ public final class frmClientes extends javax.swing.JInternalFrame {
                
     }//GEN-LAST:event_regclientejButton1ActionPerformed
 
+    public void defineTablaClientes(){
+        DefaultTableModel tablaClientes = new DefaultTableModel();
+        String strTitulos[]={"NOMBRE","APELLIDO","RFC","DOMICILIO"};
+        tablaClientes.setColumnIdentifiers(strTitulos);
+        this.TabDatos.setModel((SingleSelectionModel) tablaClientes);
+    }
+    
     private void salirclijButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirclijButton3ActionPerformed
         this.dispose();
     }//GEN-LAST:event_salirclijButton3ActionPerformed
