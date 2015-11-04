@@ -65,9 +65,8 @@ ResultSet res;
         String strConsulta;
         String datos[]=new String [4];
        // strConsulta="call PA_LeeClientes(" + intDesde +"," +","+ intCuantos+")";
-        strConsulta="call PA_LeeClientes(1,5);";
-        
-        
+        strConsulta="call PA_LeeClientes("+intDesde+","+intCuantos+");";
+      
         try{
          
          ps= con.conectado().prepareStatement(strConsulta);
@@ -90,4 +89,43 @@ ResultSet res;
         
 }
     
-}
+    public String[] leerCliente(String strCliente){
+        String strConsulta;
+        String datos[]=new String [11];
+        strConsulta="call PA_LeeCliente("+strCliente+");";
+      
+        try{
+         
+         ps= con.conectado().prepareStatement(strConsulta);
+         res = ps.executeQuery();
+         
+         while(res.next()){
+              //System.out.println(res.getString("Nombres"));
+              datos[0]=res.getString("IdCliente");
+              datos[1]=res.getString("Nombres");
+              datos[2]=res.getString("Apellidos");
+              datos[3]=res.getString("Direccion");
+              datos[4]=res.getString("Ciudad");
+              
+              datos[5]=res.getString("Telefono");
+              datos[6]=res.getString("RFC");
+              datos[7]=res.getString("FechaNacimiento");
+              datos[8]=res.getString("Estado");
+              datos[9]=res.getString("Municipio");
+             
+              datos[10]=res.getString("CodigoPostal");
+                      
+              res.close();
+              return datos;
+              
+         }
+         res.close();
+          }catch(SQLException e){
+         System.out.println(e);
+ 
+         return datos;
+          }
+      
+        return datos;
+        }
+    }    

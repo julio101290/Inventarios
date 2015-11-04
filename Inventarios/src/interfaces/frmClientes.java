@@ -50,6 +50,8 @@ public final class frmClientes extends javax.swing.JInternalFrame {
         jLabel12 = new javax.swing.JLabel();
         txtLugarNacimiento = new javax.swing.JTextField();
         dteFechaNacimiento = new com.toedter.calendar.JDateChooser();
+        txtIdCliente = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         txtRFC = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
@@ -107,6 +109,8 @@ public final class frmClientes extends javax.swing.JInternalFrame {
 
         dteFechaNacimiento.setDateFormatString("yyyy-MM-dd");
 
+        jLabel11.setText("Id Cliente");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -124,7 +128,9 @@ public final class frmClientes extends javax.swing.JInternalFrame {
                     .addComponent(jLabel3)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtApellidos, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel11)
+                    .addComponent(txtIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -146,7 +152,11 @@ public final class frmClientes extends javax.swing.JInternalFrame {
                 .addComponent(jLabel6)
                 .addGap(18, 18, 18)
                 .addComponent(dteFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(179, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtIdCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(133, Short.MAX_VALUE))
         );
 
         TabDatos.addTab("Basicos", jPanel1);
@@ -222,9 +232,9 @@ public final class frmClientes extends javax.swing.JInternalFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
+                .addGap(20, 20, 20)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -260,6 +270,11 @@ public final class frmClientes extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        JTabClientes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JTabClientesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(JTabClientes);
 
         javax.swing.GroupLayout PanTablaLayout = new javax.swing.GroupLayout(PanTabla);
@@ -456,7 +471,37 @@ public final class frmClientes extends javax.swing.JInternalFrame {
     private void txtApellidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidosActionPerformed
         txtApellidos.transferFocus();
     }//GEN-LAST:event_txtApellidosActionPerformed
-
+    //OBTIENE EL ID DEL CLIENTE Y LO PONE EN LA CAJA DE TEXTO
+    private void JTabClientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JTabClientesMouseClicked
+        int fila;
+        String[] datosCliente =new String[11];
+        fila = this.JTabClientes.rowAtPoint(evt.getPoint());
+        control_cliente cliente = new control_cliente();
+        long lngCliente;
+        
+        
+        
+        if (fila > -1){
+            this.txtIdCliente.setText(String.valueOf
+                            (JTabClientes.getValueAt(fila, 0)));
+                           
+            
+            datosCliente=cliente.leerCliente( this.txtIdCliente.getText());
+            
+            this.txtIdCliente.setText(datosCliente[0]);
+            this.txtNombre1.setText(datosCliente[1]);
+            this.txtApellidos.setText(datosCliente[2]);
+            this.txtDomicilio.setText(datosCliente[3]);
+            this.txtCiudad.setText(datosCliente[4]);
+            this.txtTelefono.setText(datosCliente[5]);
+            this.txtRFC.setText(datosCliente[6]);
+            this.dteFechaNacimiento.setDateFormatString(datosCliente[7]);
+            this.txtEstado.setText(datosCliente[8]);
+            this.txtMunicipio.setText(datosCliente[9]);
+            this.txtCodigoPostal.setText(datosCliente[10]);
+            
+    }//GEN-LAST:event_JTabClientesMouseClicked
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JTabClientes;
     private javax.swing.JPanel PanBotones;
@@ -466,6 +511,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
     private com.toedter.calendar.JDateChooser dteFechaNacimiento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -486,6 +532,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtCodigoPostal;
     private javax.swing.JTextField txtDomicilio;
     private javax.swing.JTextField txtEstado;
+    private javax.swing.JTextField txtIdCliente;
     private javax.swing.JTextField txtLugarNacimiento;
     private javax.swing.JTextField txtMunicipio;
     private javax.swing.JTextField txtNombre1;
