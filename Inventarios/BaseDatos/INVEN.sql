@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 27-10-2015 a las 07:32:32
+-- Tiempo de generación: 05-11-2015 a las 04:32:47
 -- Versión del servidor: 5.6.25
 -- Versión de PHP: 5.6.11
 
@@ -24,6 +24,41 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_LeeCliente`(in cliente bigint)
+SELECT right(`Clientes`.`idCliente`,5) as idCliente,
+    `Clientes`.`Nombres`,
+    `Clientes`.`Apellidos`,
+    `Clientes`.`Direccion`,
+    `Clientes`.`Ciudad`,
+    `Clientes`.`Telefono`,
+    `Clientes`.`RFC`,
+    `Clientes`.`FechaNacimiento`,
+    `Clientes`.`Estado`,
+    `Clientes`.`Municipio`,
+    `Clientes`.`CodigoPostal`
+FROM `INVEN`.`Clientes`
+WHERE idCliente=cliente;$$
+
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_LeeClientes`(IN `desde` BIGINT, IN `cuantos` BIGINT)
+BEGIN
+
+SELECT right(`Clientes`.`idCliente`,5) as idCliente,
+    `Clientes`.`Nombres`,
+    `Clientes`.`Apellidos`,
+    `Clientes`.`Direccion`,
+    `Clientes`.`Ciudad`,
+    `Clientes`.`Telefono`,
+    `Clientes`.`RFC`,
+    `Clientes`.`FechaNacimiento`,
+    `Clientes`.`Estado`,
+    `Clientes`.`Municipio`,
+    `Clientes`.`CodigoPostal`
+FROM `INVEN`.`Clientes`
+limit desde,cuantos;
+
+
+END$$
+
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_InsertaCliente`(in  Nombres VARCHAR(200)
 , Apellidos VARCHAR(200),Direccion varchar(200),Ciudad varchar(200)
 ,Telefono varchar(200),RFC VARCHAR(10),FechaNacimiento VARCHAR(200),Estado VARCHAR(200)
@@ -79,16 +114,15 @@ CREATE TABLE IF NOT EXISTS `Clientes` (
   `Estado` varchar(45) DEFAULT NULL,
   `Municipio` varchar(45) DEFAULT NULL,
   `CodigoPostal` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Volcado de datos para la tabla `Clientes`
 --
 
 INSERT INTO `Clientes` (`idCliente`, `Nombres`, `Apellidos`, `Direccion`, `Ciudad`, `Telefono`, `RFC`, `FechaNacimiento`, `Estado`, `Municipio`, `CodigoPostal`) VALUES
-(00000000000000000001, '', '', '', '', '', '', '2015-10-12 00:00:00.000000', '', '', ''),
-(00000000000000000002, '', '', '', '', '', '', '2015-10-02 00:00:00.000000', '', '', ''),
-(00000000000000000003, '', '', '', '', '', '', '2015-10-13 00:00:00.000000', '', '', '');
+(00000000000000000001, 'Julio', 'Leyva', 'Domilio', 'Ciudad', 'Telefono', 'RFC', '2015-10-15 00:00:00.000000', 'Estado', 'Municipio', 'Codigo postal'),
+(00000000000000000002, 'NOmbre', 'Apellidos', 'Domicilio', 'Ciudad', 'Telefono', 'RFC', '2006-10-14 00:00:00.000000', 'Estado', 'Municipio', 'Codigo Postal');
 
 -- --------------------------------------------------------
 
@@ -135,7 +169,7 @@ ALTER TABLE `Usuarios`
 -- AUTO_INCREMENT de la tabla `Clientes`
 --
 ALTER TABLE `Clientes`
-  MODIFY `idCliente` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+  MODIFY `idCliente` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT de la tabla `Usuarios`
 --

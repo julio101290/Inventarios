@@ -16,6 +16,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
         initComponents();    
         limpiar();
         bloquear_cajas();
+        
         defineTablaClientes();
         
       //Object[] tipo_doc = ctrl.combox("tipo_de_documento","id_tipo_documento");
@@ -442,8 +443,9 @@ public final class frmClientes extends javax.swing.JInternalFrame {
         String strTitulos[]={"ID CLIENTE","NOMBRE","APELLIDO","RFC"};
         tablaClientes.setColumnIdentifiers(strTitulos);
         this.JTabClientes.setModel(tablaClientes);
+        
         control_cliente classCliente= new control_cliente();
-        classCliente.leerClientes(1, 5,tablaClientes);
+        classCliente.leerClientes(0, 5,tablaClientes);
         
         this.JTabClientes.setModel(tablaClientes);
       
@@ -482,8 +484,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
         
         
         if (fila > -1){
-            this.txtIdCliente.setText(String.valueOf
-                            (JTabClientes.getValueAt(fila, 0)));
+            this.txtIdCliente.setText(String.valueOf(JTabClientes.getValueAt(fila, 0)));
                            
             
             datosCliente=cliente.leerCliente( this.txtIdCliente.getText());
@@ -495,7 +496,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
             this.txtCiudad.setText(datosCliente[4]);
             this.txtTelefono.setText(datosCliente[5]);
             this.txtRFC.setText(datosCliente[6]);
-            this.dteFechaNacimiento.setDateFormatString(datosCliente[7]);
+            this.dteFechaNacimiento.setDateFormatString(( datosCliente[7] ));
             this.txtEstado.setText(datosCliente[8]);
             this.txtMunicipio.setText(datosCliente[9]);
             this.txtCodigoPostal.setText(datosCliente[10]);
