@@ -28,6 +28,7 @@ public String strMunicipio;
 public String strRFC;
 public String strTelefono;
 public String strFechaNacimiento;
+public java.util.Date Fecha = new java.util.Date();
 
 private conexion con;
 PreparedStatement ps;
@@ -48,7 +49,7 @@ ResultSet res;
          strSQL=strSQL +"call sp_InsertaCliente ('"+this.strNombre+"'"
                  + ",'"+strApellido+"','"+strDomicilio+"','"+strCiudad+"','" +strTelefono+"',"
                  + "'"+strRFC+"','"+strFechaNacimiento+"','"+strEstado+"','"
-                 +strMunicipio+"','"+strCodigoPostal+"');";
+                 +strMunicipio+"','"+strCodigoPostal+"','"+this.strLugarNacimiento+"');";
          System.out.println(strSQL);
          sql.ejecutarQuery(strSQL);
          System.out.println(strSQL);
@@ -61,11 +62,11 @@ ResultSet res;
         return datos;
     }
      
-    public void leerClientes(int intDesde ,int intCuantos,DefaultTableModel tablaClientes ){
+    public void leerClientes(long intDesde ,long intCuantos,DefaultTableModel tablaClientes,String strBusqueda ){
         String strConsulta;
         String datos[]=new String [4];
        // strConsulta="call PA_LeeClientes(" + intDesde +"," +","+ intCuantos+")";
-        strConsulta="call PA_LeeClientes("+intDesde+","+intCuantos+");";
+        strConsulta="call PA_LeeClientes("+intDesde+","+intCuantos+",'"+strBusqueda+"');";
       
         try{
          
@@ -91,8 +92,10 @@ ResultSet res;
     
     public String[] leerCliente(String strCliente){
         String strConsulta;
-        String datos[]=new String [11];
+        String datos[]=new String [12];
+        
         strConsulta="call PA_LeeCliente("+strCliente+");";
+     
       
         try{
          
@@ -109,11 +112,13 @@ ResultSet res;
               
               datos[5]=res.getString("Telefono");
               datos[6]=res.getString("RFC");
-              datos[7]=res.getString("FechaNacimiento");
+              //datos[7]=res.getString("FechaNacimiento");
+               Fecha =        res.getDate("FechaNacimiento");
               datos[8]=res.getString("Estado");
               datos[9]=res.getString("Municipio");
              
               datos[10]=res.getString("CodigoPostal");
+              datos[11]=res.getString("LugarNacimiento");
                       
               res.close();
               return datos;
@@ -128,4 +133,39 @@ ResultSet res;
       
         return datos;
         }
+    
+    
+public long leerCuantos(String strBusqueda){
+        String strConsulta;
+        long cuantos = 0;
+        strConsulta="call PA_CuantosClientes('" +strBusqueda +"');";
+      
+        try{
+         
+         ps= con.conectado().prepareStatement(strConsulta);
+         res = ps.executeQuery();
+          System.out.println(strConsulta);
+         while(res.next()){
+              //System.out.println(res.getString("Nombres"));
+              cuantos=Long.valueOf(res.getString("cuantos"));
+       
+              return cuantos;
+              
+         }
+         res.close();
+          }catch(SQLException e){
+         System.out.println(e);
+         System.out.println(strConsulta);
+         return cuantos;
+          }
+       System.out.println(strConsulta);
+        return cuantos;
+       
+        }
     }    
+
+
+    
+    
+    
+    
