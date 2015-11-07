@@ -89,8 +89,9 @@ public final class frmClientes extends javax.swing.JInternalFrame {
         jlblTotalPaginas = new javax.swing.JLabel();
         cmdAtras = new javax.swing.JButton();
         cmdSiguiente1 = new javax.swing.JButton();
-        txtIdCliente1 = new javax.swing.JTextField();
+        txtBuscar = new javax.swing.JTextField();
         lblBuscar = new javax.swing.JLabel();
+        cmdBuscar = new javax.swing.JButton();
 
         setIconifiable(true);
         setMaximizable(true);
@@ -375,18 +376,25 @@ public final class frmClientes extends javax.swing.JInternalFrame {
             }
         });
 
-        txtIdCliente1.addActionListener(new java.awt.event.ActionListener() {
+        txtBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtIdCliente1ActionPerformed(evt);
+                txtBuscarActionPerformed(evt);
             }
         });
-        txtIdCliente1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtBuscar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtIdCliente1KeyPressed(evt);
+                txtBuscarKeyPressed(evt);
             }
         });
 
         lblBuscar.setText("Buscar");
+
+        cmdBuscar.setText("Buscar");
+        cmdBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -413,8 +421,10 @@ public final class frmClientes extends javax.swing.JInternalFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(lblBuscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtIdCliente1)
-                        .addGap(130, 130, 130))))
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cmdBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -428,10 +438,12 @@ public final class frmClientes extends javax.swing.JInternalFrame {
                     .addComponent(jlblTotalPaginas)
                     .addComponent(cmdAtras)
                     .addComponent(cmdSiguiente1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtIdCliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblBuscar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblBuscar))
+                    .addComponent(cmdBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -463,7 +475,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
                         .addComponent(TabDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(PanBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 50, Short.MAX_VALUE))
+                .addGap(0, 44, Short.MAX_VALUE))
         );
 
         TabDatos.getAccessibleContext().setAccessibleName("Datos Basicos");
@@ -647,13 +659,17 @@ public final class frmClientes extends javax.swing.JInternalFrame {
             }
     }//GEN-LAST:event_cmdAtrasActionPerformed
 
-    private void txtIdCliente1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdCliente1ActionPerformed
+    private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdCliente1ActionPerformed
+    }//GEN-LAST:event_txtBuscarActionPerformed
 
-    private void txtIdCliente1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIdCliente1KeyPressed
+    private void txtBuscarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtIdCliente1KeyPressed
+    }//GEN-LAST:event_txtBuscarKeyPressed
+
+    private void cmdBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBuscarActionPerformed
+        defineTablaClientes(this.txtBuscar.getText(),Long.valueOf(this.txtPagina.getText()));
+    }//GEN-LAST:event_cmdBuscarActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JTabClientes;
@@ -662,6 +678,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
     private javax.swing.JTabbedPane TabDatos;
     private javax.swing.JButton cancelclijButton2;
     private javax.swing.JButton cmdAtras;
+    private javax.swing.JButton cmdBuscar;
     private javax.swing.JButton cmdSiguiente1;
     private com.toedter.calendar.JDateChooser dteFechaNacimiento;
     private javax.swing.JLabel jLabel1;
@@ -688,12 +705,12 @@ public final class frmClientes extends javax.swing.JInternalFrame {
     private javax.swing.JButton regclientejButton1;
     private javax.swing.JButton salirclijButton3;
     private javax.swing.JTextField txtApellidos;
+    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextField txtCiudad;
     private javax.swing.JTextField txtCodigoPostal;
     private javax.swing.JTextField txtDomicilio;
     private javax.swing.JTextField txtEstado;
     private javax.swing.JTextField txtIdCliente;
-    private javax.swing.JTextField txtIdCliente1;
     private javax.swing.JTextField txtLugarNacimiento;
     private javax.swing.JTextField txtMunicipio;
     private javax.swing.JTextField txtNombre1;
