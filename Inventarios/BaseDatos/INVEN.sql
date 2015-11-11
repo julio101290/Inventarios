@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 05-11-2015 a las 04:32:47
+-- Tiempo de generación: 11-11-2015 a las 04:36:35
 -- Versión del servidor: 5.6.25
 -- Versión de PHP: 5.6.11
 
@@ -19,12 +19,35 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `INVEN`
 --
+DROP DATABASE `INVEN`;
+CREATE DATABASE IF NOT EXISTS `INVEN` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
+USE `INVEN`;
 
 DELIMITER $$
 --
 -- Procedimientos
 --
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_LeeCliente`(in cliente bigint)
+DROP PROCEDURE IF EXISTS `PA_CuantosClientes`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_CuantosClientes`(IN `Busqueda` VARCHAR(200))
+    READS SQL DATA
+    DETERMINISTIC
+BEGIN
+
+SELECT COUNT(*) as cuantos
+FROM `INVEN`.`Clientes`
+where Nombres LIKE CONCAT('%',Busqueda,'%')
+	  or	Nombres LIKE CONCAT('%',Busqueda,'%')
+      or	Apellidos LIKE CONCAT('%',Busqueda,'%')
+      or	Direccion LIKE CONCAT('%',Busqueda,'%')
+      or	Ciudad LIKE CONCAT('%',Busqueda,'%')
+      or	Telefono LIKE CONCAT('%',Busqueda,'%')
+      or	RFC LIKE CONCAT('%',Busqueda,'%')
+      or	Estado LIKE CONCAT('%',Busqueda,'%');
+
+END$$
+
+DROP PROCEDURE IF EXISTS `PA_LeeCliente`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_LeeCliente`(IN `cliente` BIGINT)
 SELECT right(`Clientes`.`idCliente`,5) as idCliente,
     `Clientes`.`Nombres`,
     `Clientes`.`Apellidos`,
@@ -35,11 +58,13 @@ SELECT right(`Clientes`.`idCliente`,5) as idCliente,
     `Clientes`.`FechaNacimiento`,
     `Clientes`.`Estado`,
     `Clientes`.`Municipio`,
-    `Clientes`.`CodigoPostal`
+    `Clientes`.`CodigoPostal`,
+    `Clientes`.`LugarNacimiento`
 FROM `INVEN`.`Clientes`
-WHERE idCliente=cliente;$$
+WHERE idCliente=cliente$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_LeeClientes`(IN `desde` BIGINT, IN `cuantos` BIGINT)
+DROP PROCEDURE IF EXISTS `PA_LeeClientes`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_LeeClientes`(IN `desde` BIGINT, IN `cuantos` BIGINT, IN `Busqueda` VARCHAR(200))
 BEGIN
 
 SELECT right(`Clientes`.`idCliente`,5) as idCliente,
@@ -54,15 +79,21 @@ SELECT right(`Clientes`.`idCliente`,5) as idCliente,
     `Clientes`.`Municipio`,
     `Clientes`.`CodigoPostal`
 FROM `INVEN`.`Clientes`
+where Nombres LIKE CONCAT('%',Busqueda,'%')
+	  or	Nombres LIKE CONCAT('%',Busqueda,'%')
+      or	Apellidos LIKE CONCAT('%',Busqueda,'%')
+      or	Direccion LIKE CONCAT('%',Busqueda,'%')
+      or	Ciudad LIKE CONCAT('%',Busqueda,'%')
+      or	Telefono LIKE CONCAT('%',Busqueda,'%')
+      or	RFC LIKE CONCAT('%',Busqueda,'%')
+      or	Estado LIKE CONCAT('%',Busqueda,'%')
 limit desde,cuantos;
 
 
 END$$
 
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_InsertaCliente`(in  Nombres VARCHAR(200)
-, Apellidos VARCHAR(200),Direccion varchar(200),Ciudad varchar(200)
-,Telefono varchar(200),RFC VARCHAR(10),FechaNacimiento VARCHAR(200),Estado VARCHAR(200)
-,Municipio varchar(200),CodigoPostal VARCHAR(200))
+DROP PROCEDURE IF EXISTS `sp_InsertaCliente`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_InsertaCliente`(IN `Nombres` VARCHAR(200), IN `Apellidos` VARCHAR(200), IN `Direccion` VARCHAR(200), IN `Ciudad` VARCHAR(200), IN `Telefono` VARCHAR(200), IN `RFC` VARCHAR(10), IN `FechaNacimiento` VARCHAR(200), IN `Estado` VARCHAR(200), IN `Municipio` VARCHAR(200), IN `CodigoPostal` VARCHAR(200), IN `LugarNacimiento` VARCHAR(1000))
 BEGIN
  
     INSERT INTO `Clientes`
@@ -76,7 +107,8 @@ BEGIN
     `FechaNacimiento`,
     `Estado`,
     `Municipio`,
-    `CodigoPostal`
+    `CodigoPostal`,
+    `LugarNacimiento`
         )
     VALUES
     (
@@ -89,7 +121,8 @@ BEGIN
     FechaNacimiento,
     Estado,
     Municipio,
-    CodigoPostal
+    CodigoPostal,
+    LugarNacimiento
     );
  
 END$$
@@ -101,7 +134,10 @@ DELIMITER ;
 --
 -- Estructura de tabla para la tabla `Clientes`
 --
+-- Creación: 06-11-2015 a las 06:19:06
+--
 
+DROP TABLE IF EXISTS `Clientes`;
 CREATE TABLE IF NOT EXISTS `Clientes` (
   `idCliente` bigint(20) unsigned zerofill NOT NULL,
   `Nombres` varchar(100) DEFAULT NULL,
@@ -110,39 +146,28 @@ CREATE TABLE IF NOT EXISTS `Clientes` (
   `Ciudad` varchar(45) DEFAULT NULL,
   `Telefono` varchar(45) DEFAULT NULL,
   `RFC` varchar(45) DEFAULT NULL,
-  `FechaNacimiento` datetime(6) DEFAULT NULL,
+  `FechaNacimiento` date DEFAULT NULL,
   `Estado` varchar(45) DEFAULT NULL,
   `Municipio` varchar(45) DEFAULT NULL,
-  `CodigoPostal` varchar(45) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `Clientes`
---
-
-INSERT INTO `Clientes` (`idCliente`, `Nombres`, `Apellidos`, `Direccion`, `Ciudad`, `Telefono`, `RFC`, `FechaNacimiento`, `Estado`, `Municipio`, `CodigoPostal`) VALUES
-(00000000000000000001, 'Julio', 'Leyva', 'Domilio', 'Ciudad', 'Telefono', 'RFC', '2015-10-15 00:00:00.000000', 'Estado', 'Municipio', 'Codigo postal'),
-(00000000000000000002, 'NOmbre', 'Apellidos', 'Domicilio', 'Ciudad', 'Telefono', 'RFC', '2006-10-14 00:00:00.000000', 'Estado', 'Municipio', 'Codigo Postal');
+  `CodigoPostal` varchar(45) DEFAULT NULL,
+  `LugarNacimiento` varchar(2000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `Usuarios`
 --
+-- Creación: 23-10-2015 a las 05:32:41
+--
 
+DROP TABLE IF EXISTS `Usuarios`;
 CREATE TABLE IF NOT EXISTS `Usuarios` (
   `idUsuario` bigint(20) unsigned NOT NULL,
   `Usuario` varchar(300) NOT NULL,
   `Contra` varchar(300) NOT NULL,
   `Grupo` mediumint(9) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
-
---
--- Volcado de datos para la tabla `Usuarios`
---
-
-INSERT INTO `Usuarios` (`idUsuario`, `Usuario`, `Contra`, `Grupo`) VALUES
-(1, 'Julio', 'Cesar', 1);
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Índices para tablas volcadas
@@ -169,12 +194,12 @@ ALTER TABLE `Usuarios`
 -- AUTO_INCREMENT de la tabla `Clientes`
 --
 ALTER TABLE `Clientes`
-  MODIFY `idCliente` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+  MODIFY `idCliente` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT de la tabla `Usuarios`
 --
 ALTER TABLE `Usuarios`
-  MODIFY `idUsuario` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+  MODIFY `idUsuario` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
