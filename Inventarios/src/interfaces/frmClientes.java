@@ -78,7 +78,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         JTabClientes = new javax.swing.JTable();
         PanBotones = new javax.swing.JPanel();
-        regclientejButton1 = new javax.swing.JButton();
+        btnRegCliente = new javax.swing.JButton();
         cancelclijButton2 = new javax.swing.JButton();
         salirclijButton3 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
@@ -307,10 +307,10 @@ public final class frmClientes extends javax.swing.JInternalFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        regclientejButton1.setText("Registrar");
-        regclientejButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnRegCliente.setText("Registrar");
+        btnRegCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                regclientejButton1ActionPerformed(evt);
+                btnRegClienteActionPerformed(evt);
             }
         });
 
@@ -333,7 +333,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
         PanBotonesLayout.setHorizontalGroup(
             PanBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanBotonesLayout.createSequentialGroup()
-                .addComponent(regclientejButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cancelclijButton2)
                 .addGap(18, 18, 18)
@@ -345,7 +345,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
             .addGroup(PanBotonesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(PanBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(regclientejButton1)
+                    .addComponent(btnRegCliente)
                     .addComponent(cancelclijButton2)
                     .addComponent(salirclijButton3))
                 .addContainerGap(17, Short.MAX_VALUE))
@@ -485,10 +485,22 @@ public final class frmClientes extends javax.swing.JInternalFrame {
 
     public void limpiar()
     {
-      
-       //combo_tipo.setName("");
-       txtApellidos.setText("");
-       
+        
+        this.btnRegCliente.setLabel("Registrar");
+        txtApellidos.setText("");
+        this.txtCiudad.setText("");
+        this.txtCodigoPostal.setText("");
+        this.txtEstado.setText("");
+        this.txtDomicilio.setText("");
+        this.txtEstado.setText("");
+        this.txtIdCliente.setText("");
+        this.txtLugarNacimiento.setText("");
+        this.txtMunicipio.setText("");
+        this.txtNombre1.setText("");
+        this.txtRFC.setText("");
+        this.txtTelefono.setText("");
+        this.dteFechaNacimiento.setDate(null);
+        
         
     }
     
@@ -499,7 +511,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
        txtApellidos.setEnabled(false);
            
        //ciudad_combo.setEnabled(false); 
-       regclientejButton1.setEnabled(false);
+       btnRegCliente.setEnabled(false);
        cancelclijButton2.setEnabled(false);
        txtDomicilio.setEnabled(false);
        this.txtCiudad.setEnabled(false);
@@ -519,7 +531,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
           
        //ciudad_combo.setEnabled(true); 
        txtDomicilio.setEnabled(true);
-       regclientejButton1.setEnabled(true);
+       btnRegCliente.setEnabled(true);
        cancelclijButton2.setEnabled(true);
         this.txtCiudad.setEnabled(true);
        this.txtCodigoPostal.setEnabled(true);
@@ -531,7 +543,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
        
     }
     
-    private void regclientejButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_regclientejButton1ActionPerformed
+    private void btnRegClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegClienteActionPerformed
     
       
         control_cliente control = new control_cliente();
@@ -555,7 +567,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
         control.ingresar_cliente();
  
                
-    }//GEN-LAST:event_regclientejButton1ActionPerformed
+    }//GEN-LAST:event_btnRegClienteActionPerformed
 
     public void defineTablaClientes(String strBusqueda,long DesdeHoja){
         
@@ -611,8 +623,6 @@ public final class frmClientes extends javax.swing.JInternalFrame {
         control_cliente cliente = new control_cliente();
         long lngCliente;
         
-        
-        
         if (fila > -1){
             this.txtIdCliente.setText(String.valueOf(JTabClientes.getValueAt(fila, 0)));
             
@@ -638,6 +648,10 @@ public final class frmClientes extends javax.swing.JInternalFrame {
             this.txtCodigoPostal.setText(datosCliente[10]);
             this.txtLugarNacimiento.setText(datosCliente[11]);
             this.dteFechaNacimiento.setCursor(null);
+            
+            if(Long.valueOf( datosCliente[0])>0){
+                this.btnRegCliente.setLabel("Actualizar");
+            }
             
     }//GEN-LAST:event_JTabClientesMouseClicked
     }
@@ -676,6 +690,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
     private javax.swing.JPanel PanBotones;
     private javax.swing.JPanel PanTabla;
     private javax.swing.JTabbedPane TabDatos;
+    private javax.swing.JButton btnRegCliente;
     private javax.swing.JButton cancelclijButton2;
     private javax.swing.JButton cmdAtras;
     private javax.swing.JButton cmdBuscar;
@@ -702,7 +717,6 @@ public final class frmClientes extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jlblNumReg2;
     private javax.swing.JLabel jlblTotalPaginas;
     private javax.swing.JLabel lblBuscar;
-    private javax.swing.JButton regclientejButton1;
     private javax.swing.JButton salirclijButton3;
     private javax.swing.JTextField txtApellidos;
     private javax.swing.JTextField txtBuscar;

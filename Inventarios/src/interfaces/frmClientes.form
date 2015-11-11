@@ -401,7 +401,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <Component id="regclientejButton1" min="-2" pref="103" max="-2" attributes="0"/>
+                  <Component id="btnRegCliente" min="-2" pref="103" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="cancelclijButton2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -415,7 +415,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="regclientejButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnRegCliente" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="cancelclijButton2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="salirclijButton3" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -425,12 +425,12 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="regclientejButton1">
+        <Component class="javax.swing.JButton" name="btnRegCliente">
           <Properties>
             <Property name="text" type="java.lang.String" value="Registrar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="regclientejButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegClienteActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="cancelclijButton2">
