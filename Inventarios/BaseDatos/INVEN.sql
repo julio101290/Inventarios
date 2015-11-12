@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 11-11-2015 a las 04:36:35
+-- Tiempo de generación: 12-11-2015 a las 22:32:20
 -- Versión del servidor: 5.6.25
 -- Versión de PHP: 5.6.11
 
@@ -19,7 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `INVEN`
 --
-DROP DATABASE `INVEN`;
 CREATE DATABASE IF NOT EXISTS `INVEN` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `INVEN`;
 
@@ -27,6 +26,24 @@ DELIMITER $$
 --
 -- Procedimientos
 --
+DROP PROCEDURE IF EXISTS `PA_ActualizaCliente`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_ActualizaCliente`(IN `Cliente` BIGINT, IN `Nombres` VARCHAR(200), IN `Apellidos` VARCHAR(200), IN `Ciudad` VARCHAR(200), IN `Telefono` VARCHAR(200), IN `RFC` VARCHAR(200), IN `FechaNacimiento` DATE, IN `Estado` VARCHAR(200), IN `Municipio` VARCHAR(200), IN `CodigoPostal` VARCHAR(200), IN `LugarNacimiento` VARCHAR(1000), IN `Direccion` VARCHAR(1000))
+    MODIFIES SQL DATA
+UPDATE `Clientes` SET 
+`Nombres`=Nombres
+,`Apellidos`=Apellidos
+,`Direccion`=Direccion
+,`Ciudad`=Ciudad
+,`Telefono`=Telefono
+,`RFC`=RFC
+,`FechaNacimiento`=FechaNacimiento
+,`Estado`=Estado
+,`Municipio`=Municipio
+,`CodigoPostal`=CodigoPostal
+,`LugarNacimiento`=LugarNacimiento
+
+WHERE idCliente=Cliente$$
+
 DROP PROCEDURE IF EXISTS `PA_CuantosClientes`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_CuantosClientes`(IN `Busqueda` VARCHAR(200))
     READS SQL DATA
@@ -45,6 +62,13 @@ where Nombres LIKE CONCAT('%',Busqueda,'%')
       or	Estado LIKE CONCAT('%',Busqueda,'%');
 
 END$$
+
+DROP PROCEDURE IF EXISTS `PA_EliminarCliente`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_EliminarCliente`(IN `idCliente1` BIGINT)
+    NO SQL
+delete 
+FROM Clientes 
+WHERE idCliente=idCliente1$$
 
 DROP PROCEDURE IF EXISTS `PA_LeeCliente`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `PA_LeeCliente`(IN `cliente` BIGINT)
@@ -134,8 +158,6 @@ DELIMITER ;
 --
 -- Estructura de tabla para la tabla `Clientes`
 --
--- Creación: 06-11-2015 a las 06:19:06
---
 
 DROP TABLE IF EXISTS `Clientes`;
 CREATE TABLE IF NOT EXISTS `Clientes` (
@@ -151,14 +173,43 @@ CREATE TABLE IF NOT EXISTS `Clientes` (
   `Municipio` varchar(45) DEFAULT NULL,
   `CodigoPostal` varchar(45) DEFAULT NULL,
   `LugarNacimiento` varchar(2000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Clientes`
+--
+
+UPDATE `Clientes` SET `idCliente` = 00000000000000000007,`Nombres` = 'cesar',`Apellidos` = 'julio',`Direccion` = 'as',`Ciudad` = 's',`Telefono` = 's',`RFC` = 'asd',`FechaNacimiento` = '2015-11-01',`Estado` = 's',`Municipio` = 's',`CodigoPostal` = 's',`LugarNacimiento` = '0' WHERE `Clientes`.`idCliente` = 00000000000000000007;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000008,`Nombres` = 'cesar',`Apellidos` = 'julio',`Direccion` = 'as',`Ciudad` = 's',`Telefono` = 's',`RFC` = 'asd',`FechaNacimiento` = '2015-11-01',`Estado` = 's',`Municipio` = 's',`CodigoPostal` = 's',`LugarNacimiento` = '0' WHERE `Clientes`.`idCliente` = 00000000000000000008;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000010,`Nombres` = 'cesar',`Apellidos` = 'julio',`Direccion` = 'as',`Ciudad` = 's',`Telefono` = 's',`RFC` = 'asd',`FechaNacimiento` = '2015-11-01',`Estado` = 's',`Municipio` = 's',`CodigoPostal` = 's',`LugarNacimiento` = '0' WHERE `Clientes`.`idCliente` = 00000000000000000010;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000011,`Nombres` = 'cesar',`Apellidos` = 'julio',`Direccion` = 'as',`Ciudad` = 's',`Telefono` = 's',`RFC` = 'asd',`FechaNacimiento` = '2015-11-01',`Estado` = 's',`Municipio` = 's',`CodigoPostal` = 's',`LugarNacimiento` = '0' WHERE `Clientes`.`idCliente` = 00000000000000000011;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000012,`Nombres` = 'cesar',`Apellidos` = 'julio',`Direccion` = 'as',`Ciudad` = 's',`Telefono` = 's',`RFC` = 'asd',`FechaNacimiento` = '2015-11-01',`Estado` = 's',`Municipio` = 's',`CodigoPostal` = 's',`LugarNacimiento` = '0' WHERE `Clientes`.`idCliente` = 00000000000000000012;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000013,`Nombres` = 'cesar',`Apellidos` = 'julio',`Direccion` = 'as',`Ciudad` = 's',`Telefono` = 's',`RFC` = 'asd',`FechaNacimiento` = '2015-11-01',`Estado` = 's',`Municipio` = 's',`CodigoPostal` = 's',`LugarNacimiento` = '0' WHERE `Clientes`.`idCliente` = 00000000000000000013;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000014,`Nombres` = 'cesar',`Apellidos` = 'julio',`Direccion` = 'as',`Ciudad` = 's',`Telefono` = 's',`RFC` = 'asd',`FechaNacimiento` = '2015-11-01',`Estado` = 's',`Municipio` = 's',`CodigoPostal` = 's',`LugarNacimiento` = '0' WHERE `Clientes`.`idCliente` = 00000000000000000014;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000015,`Nombres` = 'cesar',`Apellidos` = 'julio',`Direccion` = 'as',`Ciudad` = 's',`Telefono` = 's',`RFC` = 'asd',`FechaNacimiento` = '0000-00-00',`Estado` = 's',`Municipio` = 's',`CodigoPostal` = 's',`LugarNacimiento` = '0' WHERE `Clientes`.`idCliente` = 00000000000000000015;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000016,`Nombres` = 'cesar',`Apellidos` = 'julio',`Direccion` = 'as',`Ciudad` = 's',`Telefono` = 's',`RFC` = 'asd',`FechaNacimiento` = '0000-00-00',`Estado` = 's',`Municipio` = 's',`CodigoPostal` = 's',`LugarNacimiento` = '0' WHERE `Clientes`.`idCliente` = 00000000000000000016;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000017,`Nombres` = 'cesar',`Apellidos` = 'julio',`Direccion` = 'as',`Ciudad` = 's',`Telefono` = 's',`RFC` = 'asd',`FechaNacimiento` = '0000-00-00',`Estado` = 's',`Municipio` = 's',`CodigoPostal` = 's',`LugarNacimiento` = '0' WHERE `Clientes`.`idCliente` = 00000000000000000017;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000018,`Nombres` = 'cesar',`Apellidos` = 'julio',`Direccion` = 'as',`Ciudad` = 's',`Telefono` = 's',`RFC` = 'asd',`FechaNacimiento` = '0000-00-00',`Estado` = 's',`Municipio` = 's',`CodigoPostal` = 's',`LugarNacimiento` = '0' WHERE `Clientes`.`idCliente` = 00000000000000000018;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000019,`Nombres` = 'cesar',`Apellidos` = 'julio',`Direccion` = 'as',`Ciudad` = 's',`Telefono` = 's',`RFC` = 'asd',`FechaNacimiento` = '0000-00-00',`Estado` = 's',`Municipio` = 's',`CodigoPostal` = 's',`LugarNacimiento` = '0' WHERE `Clientes`.`idCliente` = 00000000000000000019;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000020,`Nombres` = 'cesar',`Apellidos` = 'julio',`Direccion` = 'as',`Ciudad` = 's',`Telefono` = 's',`RFC` = 'asd',`FechaNacimiento` = '0000-00-00',`Estado` = 's',`Municipio` = 's',`CodigoPostal` = 's',`LugarNacimiento` = '0' WHERE `Clientes`.`idCliente` = 00000000000000000020;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000021,`Nombres` = 'cesar',`Apellidos` = 'julio',`Direccion` = 'as',`Ciudad` = 's',`Telefono` = 's',`RFC` = 'asd',`FechaNacimiento` = '0000-00-00',`Estado` = 's',`Municipio` = 's',`CodigoPostal` = 's',`LugarNacimiento` = '0' WHERE `Clientes`.`idCliente` = 00000000000000000021;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000022,`Nombres` = 'cesar',`Apellidos` = 'julio',`Direccion` = 'as',`Ciudad` = 's',`Telefono` = 's',`RFC` = 'asd',`FechaNacimiento` = '0000-00-00',`Estado` = 's',`Municipio` = 's',`CodigoPostal` = 's',`LugarNacimiento` = '0' WHERE `Clientes`.`idCliente` = 00000000000000000022;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000023,`Nombres` = 'cesar',`Apellidos` = 'julio',`Direccion` = 'as',`Ciudad` = 's',`Telefono` = 's',`RFC` = 'asd',`FechaNacimiento` = '0000-00-00',`Estado` = 's',`Municipio` = 's',`CodigoPostal` = 's',`LugarNacimiento` = '0' WHERE `Clientes`.`idCliente` = 00000000000000000023;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000024,`Nombres` = 'cesar',`Apellidos` = 'julio',`Direccion` = 'as',`Ciudad` = 's',`Telefono` = 's',`RFC` = 'asd',`FechaNacimiento` = '0000-00-00',`Estado` = 's',`Municipio` = 's',`CodigoPostal` = 's',`LugarNacimiento` = '0' WHERE `Clientes`.`idCliente` = 00000000000000000024;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000025,`Nombres` = 'cesar',`Apellidos` = 'julio',`Direccion` = 'as',`Ciudad` = 's',`Telefono` = 's',`RFC` = 'asd',`FechaNacimiento` = '0000-00-00',`Estado` = 's',`Municipio` = 's',`CodigoPostal` = 's',`LugarNacimiento` = '0' WHERE `Clientes`.`idCliente` = 00000000000000000025;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000026,`Nombres` = 'cesar',`Apellidos` = 'julio',`Direccion` = 'as',`Ciudad` = 's',`Telefono` = 's',`RFC` = 'asd',`FechaNacimiento` = '0000-00-00',`Estado` = 's',`Municipio` = 's',`CodigoPostal` = 's',`LugarNacimiento` = '0' WHERE `Clientes`.`idCliente` = 00000000000000000026;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000027,`Nombres` = 'cesar',`Apellidos` = 'julio',`Direccion` = 'as',`Ciudad` = 's',`Telefono` = 's',`RFC` = 'asd',`FechaNacimiento` = '0000-00-00',`Estado` = 's',`Municipio` = 's',`CodigoPostal` = 's',`LugarNacimiento` = '0' WHERE `Clientes`.`idCliente` = 00000000000000000027;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000028,`Nombres` = 'cesar',`Apellidos` = 'julio',`Direccion` = 'as',`Ciudad` = 's',`Telefono` = 's',`RFC` = 'asd',`FechaNacimiento` = '2015-11-01',`Estado` = 's',`Municipio` = 's',`CodigoPostal` = 's',`LugarNacimiento` = '0' WHERE `Clientes`.`idCliente` = 00000000000000000028;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000029,`Nombres` = 'cesar',`Apellidos` = 'julio',`Direccion` = 'as',`Ciudad` = 's',`Telefono` = 's',`RFC` = 'asd',`FechaNacimiento` = '2015-11-01',`Estado` = 's',`Municipio` = 's',`CodigoPostal` = 's',`LugarNacimiento` = '0' WHERE `Clientes`.`idCliente` = 00000000000000000029;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000030,`Nombres` = 'cesar',`Apellidos` = 'julio',`Direccion` = 'as',`Ciudad` = 's',`Telefono` = 's',`RFC` = 'asd',`FechaNacimiento` = '2015-11-01',`Estado` = 's',`Municipio` = 's',`CodigoPostal` = '0',`LugarNacimiento` = 'Los Mochis' WHERE `Clientes`.`idCliente` = 00000000000000000030;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000031,`Nombres` = 'NOmbre',`Apellidos` = 'Apellidos',`Direccion` = 'Domicilio',`Ciudad` = 'Ciudad',`Telefono` = 'Telefono',`RFC` = 'RFC',`FechaNacimiento` = '2006-10-14',`Estado` = 'Estado',`Municipio` = 'Municipio',`CodigoPostal` = '0',`LugarNacimiento` = 'asdasdasd' WHERE `Clientes`.`idCliente` = 00000000000000000031;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000032,`Nombres` = 'NOmbre',`Apellidos` = 'Apellidos',`Direccion` = 'Domicilio',`Ciudad` = 'Ciudad',`Telefono` = 'Telefono',`RFC` = 'RFC',`FechaNacimiento` = '2006-10-14',`Estado` = 'Estado',`Municipio` = 'Municipio',`CodigoPostal` = '0',`LugarNacimiento` = 'asdasdasd' WHERE `Clientes`.`idCliente` = 00000000000000000032;
+UPDATE `Clientes` SET `idCliente` = 00000000000000000033,`Nombres` = 'NOmbre',`Apellidos` = 'Apellidos',`Direccion` = 'Domicilio',`Ciudad` = 'Ciudad',`Telefono` = 'Telefono',`RFC` = 'RFC',`FechaNacimiento` = '2006-10-14',`Estado` = 'Estado',`Municipio` = 'Municipio',`CodigoPostal` = '0',`LugarNacimiento` = 'asdasdasd' WHERE `Clientes`.`idCliente` = 00000000000000000033;
 
 -- --------------------------------------------------------
 
 --
 -- Estructura de tabla para la tabla `Usuarios`
---
--- Creación: 23-10-2015 a las 05:32:41
 --
 
 DROP TABLE IF EXISTS `Usuarios`;
@@ -167,7 +218,13 @@ CREATE TABLE IF NOT EXISTS `Usuarios` (
   `Usuario` varchar(300) NOT NULL,
   `Contra` varchar(300) NOT NULL,
   `Grupo` mediumint(9) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `Usuarios`
+--
+
+UPDATE `Usuarios` SET `idUsuario` = 1,`Usuario` = 'Julio',`Contra` = 'Cesar',`Grupo` = 1 WHERE `Usuarios`.`idUsuario` = 1;
 
 --
 -- Índices para tablas volcadas
@@ -194,12 +251,12 @@ ALTER TABLE `Usuarios`
 -- AUTO_INCREMENT de la tabla `Clientes`
 --
 ALTER TABLE `Clientes`
-  MODIFY `idCliente` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT;
+  MODIFY `idCliente` bigint(20) unsigned zerofill NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=34;
 --
 -- AUTO_INCREMENT de la tabla `Usuarios`
 --
 ALTER TABLE `Usuarios`
-  MODIFY `idUsuario` bigint(20) unsigned NOT NULL AUTO_INCREMENT;
+  MODIFY `idUsuario` bigint(20) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

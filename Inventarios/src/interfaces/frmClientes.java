@@ -23,6 +23,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
         limpiar();
         this.txtNumReg.setText("5");
         defineTablaClientes("",1);
+        this.txtIdCliente.setEnabled(false);
         
       //Object[] tipo_doc = ctrl.combox("tipo_de_documento","id_tipo_documento");
                // combo_tipo.removeAllItems();
@@ -81,6 +82,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
         btnRegCliente = new javax.swing.JButton();
         cancelclijButton2 = new javax.swing.JButton();
         salirclijButton3 = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jlblNumReg = new javax.swing.JLabel();
         txtNumReg = new javax.swing.JTextField();
@@ -150,7 +152,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(txtIdCliente, javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(dteFechaNacimiento, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 256, Short.MAX_VALUE)))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(136, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,7 +193,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(183, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,7 +302,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
         PanTabla.setLayout(PanTablaLayout);
         PanTablaLayout.setHorizontalGroup(
             PanTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 472, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         PanTablaLayout.setVerticalGroup(
             PanTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,6 +330,13 @@ public final class frmClientes extends javax.swing.JInternalFrame {
             }
         });
 
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout PanBotonesLayout = new javax.swing.GroupLayout(PanBotones);
         PanBotones.setLayout(PanBotonesLayout);
         PanBotonesLayout.setHorizontalGroup(
@@ -336,9 +345,11 @@ public final class frmClientes extends javax.swing.JInternalFrame {
                 .addComponent(btnRegCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(cancelclijButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnEliminar)
                 .addGap(18, 18, 18)
                 .addComponent(salirclijButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addContainerGap())
         );
         PanBotonesLayout.setVerticalGroup(
             PanBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,7 +358,8 @@ public final class frmClientes extends javax.swing.JInternalFrame {
                 .addGroup(PanBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnRegCliente)
                     .addComponent(cancelclijButton2)
-                    .addComponent(salirclijButton3))
+                    .addComponent(salirclijButton3)
+                    .addComponent(btnEliminar))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -415,16 +427,15 @@ public final class frmClientes extends javax.swing.JInternalFrame {
                         .addComponent(txtPagina, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jlblTotalPaginas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                        .addComponent(cmdSiguiente1)
-                        .addGap(29, 29, 29))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cmdSiguiente1))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(lblBuscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cmdBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(cmdBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -454,12 +465,14 @@ public final class frmClientes extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(PanTabla, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(PanTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 14, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(TabDatos)
-                    .addComponent(PanBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(PanBotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(TabDatos))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -500,6 +513,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
         this.txtRFC.setText("");
         this.txtTelefono.setText("");
         this.dteFechaNacimiento.setDate(null);
+        this.btnEliminar.setVisible(false);
         
         
     }
@@ -545,28 +559,43 @@ public final class frmClientes extends javax.swing.JInternalFrame {
     
     private void btnRegClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegClienteActionPerformed
     
-      
-        control_cliente control = new control_cliente();
-        control.strApellido=this.txtApellidos.getText();
-        control.strCiudad=this.txtCiudad.getText();
-        control.strCodigoPostal=this.txtCodigoPostal.getText();
-        control.strDomicilio=this.txtDomicilio.getText();
-        control.strEstado=this.txtEstado.getText();
-        control.strLugarNacimiento=this.txtLugarNacimiento.getText();
-        control.strMunicipio=this.txtMunicipio.getText();
-        control.strNombre=this.txtNombre1.getText();
-        control.strRFC=this.txtRFC.getText();
-        control.strTelefono=this.txtTelefono.getText();
-        control.strFechaNacimiento=((JTextField)dteFechaNacimiento.getDateEditor().getUiComponent()).getText();
-        
-        //this.dteFecha1.setDateFormatString("YYYYMMDD");
-
-       // JOptionPane.showInternalMessageDialog(rootPane,((JTextField)dteFechaNacimiento.getDateEditor().getUiComponent()).getText());
-      //  JOptionPane.showInternalMessageDialog(rootPane,dteFechaNacimiento.getDateEditor());
-        //JOptionPane.showInternalMessageDialog(rootPane,this.dteFechaNacimiento.getDate().getYear());
-        control.ingresar_cliente();
- 
-               
+        if (this.btnRegCliente.getLabel()=="Regsitrar"){            
+            control_cliente control = new control_cliente();
+            control.strApellido=this.txtApellidos.getText();
+            control.strCiudad=this.txtCiudad.getText();
+            control.strCodigoPostal=this.txtCodigoPostal.getText();
+            control.strDomicilio=this.txtDomicilio.getText();
+            control.strEstado=this.txtEstado.getText();
+            control.strLugarNacimiento=this.txtLugarNacimiento.getText();
+            control.strMunicipio=this.txtMunicipio.getText();
+            control.strNombre=this.txtNombre1.getText();
+            control.strRFC=this.txtRFC.getText();
+            control.strTelefono=this.txtTelefono.getText();
+            control.strFechaNacimiento=((JTextField)dteFechaNacimiento.getDateEditor().getUiComponent()).getText();
+            control.ingresar_cliente();
+            JOptionPane.showInternalMessageDialog(rootPane,"Registrado Correctamente");
+            defineTablaClientes("",1);
+            limpiar();
+        }
+        else{
+            control_cliente control = new control_cliente();
+            control.strCliente=this.txtIdCliente.getText();
+            control.strApellido=this.txtApellidos.getText();
+            control.strCiudad=this.txtCiudad.getText();
+            control.strCodigoPostal=this.txtCodigoPostal.getText();
+            control.strDomicilio=this.txtDomicilio.getText();
+            control.strEstado=this.txtEstado.getText();
+            control.strLugarNacimiento=this.txtLugarNacimiento.getText();
+            control.strMunicipio=this.txtMunicipio.getText();
+            control.strNombre=this.txtNombre1.getText();
+            control.strRFC=this.txtRFC.getText();
+            control.strTelefono=this.txtTelefono.getText();
+            control.strFechaNacimiento=((JTextField)dteFechaNacimiento.getDateEditor().getUiComponent()).getText();
+            control.actualizar_cliente();
+            JOptionPane.showInternalMessageDialog(rootPane,"Actualizado Correctamente");
+            defineTablaClientes("",1);
+            limpiar();
+        }
     }//GEN-LAST:event_btnRegClienteActionPerformed
 
     public void defineTablaClientes(String strBusqueda,long DesdeHoja){
@@ -649,6 +678,8 @@ public final class frmClientes extends javax.swing.JInternalFrame {
             this.txtLugarNacimiento.setText(datosCliente[11]);
             this.dteFechaNacimiento.setCursor(null);
             
+            this.btnEliminar.setVisible(true);
+            
             if(Long.valueOf( datosCliente[0])>0){
                 this.btnRegCliente.setLabel("Actualizar");
             }
@@ -684,12 +715,24 @@ public final class frmClientes extends javax.swing.JInternalFrame {
     private void cmdBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBuscarActionPerformed
         defineTablaClientes(this.txtBuscar.getText(),Long.valueOf(this.txtPagina.getText()));
     }//GEN-LAST:event_cmdBuscarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        control_cliente cliente = new control_cliente();
+        cliente.strCliente=this.txtIdCliente.getText();
+        
+        cliente.eliminar_cliente();
+        defineTablaClientes(this.txtBuscar.getText(),Long.valueOf(this.txtPagina.getText()));
+        JOptionPane.showInternalMessageDialog(rootPane,"Eliminado Correctamente");
+        
+        
+    }//GEN-LAST:event_btnEliminarActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JTabClientes;
     private javax.swing.JPanel PanBotones;
     private javax.swing.JPanel PanTabla;
     private javax.swing.JTabbedPane TabDatos;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnRegCliente;
     private javax.swing.JButton cancelclijButton2;
     private javax.swing.JButton cmdAtras;

@@ -17,6 +17,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class control_cliente  {
 private Sentencias_sql sql; 
+public String strCliente;
 public String strNombre;
 public String strApellido;
 public String strLugarNacimiento;
@@ -50,6 +51,30 @@ ResultSet res;
                  + ",'"+strApellido+"','"+strDomicilio+"','"+strCiudad+"','" +strTelefono+"',"
                  + "'"+strRFC+"','"+strFechaNacimiento+"','"+strEstado+"','"
                  +strMunicipio+"','"+strCodigoPostal+"','"+this.strLugarNacimiento+"');";
+         System.out.println(strSQL);
+         sql.ejecutarQuery(strSQL);
+         System.out.println(strSQL);
+         return true;
+    }
+    
+        public boolean actualizar_cliente()
+    {               
+         String strSQL="";
+         strSQL=strSQL +"CALL `PA_ActualizaCliente`('"+this.strCliente+"','" +this.strNombre+"'"
+                 + ",'"+strApellido+"','"+strCiudad+"','" +strTelefono+"',"
+                 + "'"+strRFC+"','"+strFechaNacimiento+"','"+strEstado+"','"
+                 +strMunicipio+"','"+strCodigoPostal+"','"+this.strLugarNacimiento+"','"+strDomicilio+"');";
+         System.out.println(strSQL);
+         sql.ejecutarQuery(strSQL);
+         System.out.println(strSQL);
+         return true;
+    }
+        
+        
+    public boolean eliminar_cliente()
+    {               
+         String strSQL="";
+         strSQL=strSQL +"CALL `PA_EliminarCliente`('"+this.strCliente+"');";
          System.out.println(strSQL);
          sql.ejecutarQuery(strSQL);
          System.out.println(strSQL);
