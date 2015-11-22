@@ -13,6 +13,7 @@ import javax.swing.JTextField;
 import javax.swing.SingleSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import static jdk.nashorn.internal.objects.NativeString.trim;
+import  herramientas.globales.*;
 
 public final class frmClientes extends javax.swing.JInternalFrame {
 
@@ -24,6 +25,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
         this.txtNumReg.setText("5");
         defineTablaClientes("",1);
         this.txtIdCliente.setEnabled(false);
+        
         
       //Object[] tipo_doc = ctrl.combox("tipo_de_documento","id_tipo_documento");
                // combo_tipo.removeAllItems();
@@ -578,6 +580,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
             limpiar();
         }
         else{
+            String strRespuesta="";
             control_cliente control = new control_cliente();
             control.strCliente=this.txtIdCliente.getText();
             control.strApellido=this.txtApellidos.getText();
@@ -591,10 +594,19 @@ public final class frmClientes extends javax.swing.JInternalFrame {
             control.strRFC=this.txtRFC.getText();
             control.strTelefono=this.txtTelefono.getText();
             control.strFechaNacimiento=((JTextField)dteFechaNacimiento.getDateEditor().getUiComponent()).getText();
-            control.actualizar_cliente();
-            JOptionPane.showInternalMessageDialog(rootPane,"Actualizado Correctamente");
-            defineTablaClientes("",1);
-            limpiar();
+            
+            strRespuesta= herramientas.globales.strPreguntaSiNo("Desea actualizar el cliente");
+            
+            if (strRespuesta=="SI"){
+                control.actualizar_cliente();
+                JOptionPane.showInternalMessageDialog(rootPane,"Actualizado Correctamente");
+                defineTablaClientes("",1);
+                limpiar();
+            }
+            else{
+                JOptionPane.showInternalMessageDialog(rootPane,"Operación cancelada");
+            }
+                
         }
     }//GEN-LAST:event_btnRegClienteActionPerformed
 
@@ -719,12 +731,22 @@ public final class frmClientes extends javax.swing.JInternalFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         control_cliente cliente = new control_cliente();
         cliente.strCliente=this.txtIdCliente.getText();
-        
-        cliente.eliminar_cliente();
-        defineTablaClientes(this.txtBuscar.getText(),Long.valueOf(this.txtPagina.getText()));
-        JOptionPane.showInternalMessageDialog(rootPane,"Eliminado Correctamente");
+        String strRespuesta="";
         
         
+            
+
+           
+        strRespuesta=herramientas.globales.strPreguntaSiNo("¿Desea eliminar el cliente?");
+        if (strRespuesta=="SI"){
+            cliente.eliminar_cliente();
+            defineTablaClientes(this.txtBuscar.getText(),Long.valueOf(this.txtPagina.getText()));
+            JOptionPane.showInternalMessageDialog(rootPane,"Eliminado Correctamente");
+        }
+        else
+        {
+            JOptionPane.showInternalMessageDialog(rootPane,"Operacion Cancelada");
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
