@@ -13,7 +13,7 @@ public class conexion {
    public static String strBaseDeDatos=new String();
    public static String strUsuarioSQL=new String();
    public static String strPSWSQL=new String();
-   Connection conexion= null;
+   public static Connection  conexion= null;
         
  
   

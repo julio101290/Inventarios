@@ -3,6 +3,8 @@ package interfaces;
 
 import clases.control_cliente;
 import clases.control_existencias;
+import herramientas.Reportes;
+import herramientas.conexion;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -14,17 +16,31 @@ import javax.swing.SingleSelectionModel;
 import javax.swing.table.DefaultTableModel;
 import static jdk.nashorn.internal.objects.NativeString.trim;
 import  herramientas.globales.*;
+import java.awt.Frame;
+import java.io.File;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.design.JRDesignQuery;
+import net.sf.jasperreports.engine.design.JasperDesign;
+import net.sf.jasperreports.engine.util.JRLoader;
+import net.sf.jasperreports.engine.xml.JRXmlLoader;
+import net.sf.jasperreports.view.JasperViewer;
 
 public final class frmClientes extends javax.swing.JInternalFrame {
-
+    
     control_existencias ctrl = new control_existencias();
     long lngNumPaginas;
+    private conexion con;
     public frmClientes() {
         initComponents();    
         limpiar();
         this.txtNumReg.setText("5");
         defineTablaClientes("",1);
         this.txtIdCliente.setEnabled(false);
+        
         
         
       //Object[] tipo_doc = ctrl.combox("tipo_de_documento","id_tipo_documento");
@@ -96,6 +112,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
         txtBuscar = new javax.swing.JTextField();
         lblBuscar = new javax.swing.JLabel();
         cmdBuscar = new javax.swing.JButton();
+        btnImprimirReporte = new javax.swing.JButton();
 
         setIconifiable(true);
         setMaximizable(true);
@@ -410,6 +427,14 @@ public final class frmClientes extends javax.swing.JInternalFrame {
             }
         });
 
+        btnImprimirReporte.setText("Imprimir ");
+        btnImprimirReporte.setActionCommand("");
+        btnImprimirReporte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnImprimirReporteActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -436,7 +461,8 @@ public final class frmClientes extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(cmdBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cmdBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnImprimirReporte))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -451,13 +477,15 @@ public final class frmClientes extends javax.swing.JInternalFrame {
                     .addComponent(jlblTotalPaginas)
                     .addComponent(cmdAtras)
                     .addComponent(cmdSiguiente1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lblBuscar))
-                    .addComponent(cmdBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
+                    .addComponent(cmdBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnImprimirReporte)
+                .addContainerGap(23, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -485,12 +513,13 @@ public final class frmClientes extends javax.swing.JInternalFrame {
                         .addContainerGap()
                         .addComponent(PanTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                         .addComponent(TabDatos, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(PanBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 44, Short.MAX_VALUE))
+                        .addComponent(PanBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addGap(12, 12, 12))
         );
 
         TabDatos.getAccessibleContext().setAccessibleName("Datos Basicos");
@@ -748,6 +777,21 @@ public final class frmClientes extends javax.swing.JInternalFrame {
             JOptionPane.showInternalMessageDialog(rootPane,"Operacion Cancelada");
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
+
+    private void btnImprimirReporteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirReporteActionPerformed
+            int intDesde,intCuantos;
+            Long lngDesdeRegistro,lngRegistros,DesdeHoja;
+            String strBusqueda,strConsulta;
+            
+            lngDesdeRegistro=Long.valueOf(this.txtNumReg.getText());
+            lngRegistros=Long.valueOf(this.txtNumReg.getText());
+            DesdeHoja=Long.valueOf(this.txtPagina.getText());
+            
+            lngDesdeRegistro=(DesdeHoja*lngRegistros)-lngRegistros;
+            strConsulta="call PA_LeeClientes("+lngDesdeRegistro.toString()+","+this.txtNumReg.getText()+",'"+this.txtBuscar.getText()+"')";
+            System.out.println(strConsulta);
+            Reportes.lanzarReporte(strConsulta, "clientes");
+    }//GEN-LAST:event_btnImprimirReporteActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JTabClientes;
@@ -755,6 +799,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
     private javax.swing.JPanel PanTabla;
     private javax.swing.JTabbedPane TabDatos;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnImprimirReporte;
     private javax.swing.JButton btnRegCliente;
     private javax.swing.JButton cancelclijButton2;
     private javax.swing.JButton cmdAtras;
@@ -799,6 +844,51 @@ public final class frmClientes extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 
-   
+     public void mostrarReporte()throws Exception{        
+        JasperReport report= JasperCompileManager.compileReport(System.getProperty("user.dir").concat("/src/reportes/clientes.jrxml"));
+        JasperPrint print= JasperFillManager.fillReport(report, null,herramientas.conexion.conexion);
+        JasperViewer view=new JasperViewer(print,false);
+        view.setTitle("Mi primer repòrte");
+        view.setExtendedState(Frame.MAXIMIZED_BOTH);
+        view.setVisible(true);
+    }
+     
+    public void runReporte(String strConsulta ,String strReporte)
+            {
+                con = new conexion();
+                try
+                {  
+
+                    String fileName = System.getProperty("user.dir").concat("/src/reportes/"+strReporte+".jrxml");
+                   
+
+                    if (fileName == null)
+                    {                
+                        System.out.println("No encuentro el archivo del reporte.");
+                        System.exit(2);
+                    }
+
+                   
+                   
+                File theFile = new File(fileName);
+                JRDesignQuery newQuery = new JRDesignQuery();
+                JasperDesign jasperDesign = JRXmlLoader.load(theFile);
+                newQuery.setText(strConsulta);
+                jasperDesign.setQuery(newQuery);
+               
+                 JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
+                 JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, con.conectado());
+                 JasperViewer jviewer = new JasperViewer(jasperPrint,false);
+                 jviewer.setTitle("Sistema de gestión de Cartera");
+                 jviewer.setVisible(true);
+                   
+                }
+
+                catch (Exception j)
+                {
+                    System.out.println("Mensaje de Error:"+j.getMessage());
+                }
+               
+            }
 
 }
