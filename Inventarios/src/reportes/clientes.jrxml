@@ -67,22 +67,37 @@
 		<band height="24" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="2" width="100" height="20" uuid="abe844e0-b71a-4a7b-a214-3cd390553604"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[ID CLIENTE]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="115" y="2" width="100" height="20" uuid="329409d7-2f92-48e0-8603-019556caeb03"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[NOMBRE]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="231" y="2" width="100" height="20" uuid="2d4861ff-7519-4e82-bb02-d0d7752ff2b0"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[APELLIDO]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="346" y="2" width="100" height="20" uuid="1694fd2a-24a7-4669-8421-242598f4dd0d"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[RFC]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="455" y="2" width="100" height="20" uuid="97d664db-7ab9-4988-aacd-875f2c652d36"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
 				<text><![CDATA[FECHA DE NAC.]]></text>
 			</staticText>
 		</band>
@@ -117,13 +132,8 @@
 	<pageFooter>
 		<band height="24" splitType="Stretch">
 			<textField>
-				<reportElement x="426" y="4" width="80" height="20" uuid="cd191365-f51e-4228-b99a-0adcfc7c2fd6"/>
-				<textElement textAlignment="Right"/>
-				<textFieldExpression><![CDATA["Pagina "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
-			</textField>
-			<textField evaluationTime="Report">
-				<reportElement x="506" y="4" width="40" height="20" uuid="5dcaeb6a-f598-4b26-87c8-199f8975aa72"/>
-				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				<reportElement x="455" y="4" width="100" height="20" uuid="696c8f74-72a0-4fde-8c36-3f81bb6ba60e"/>
+				<textFieldExpression><![CDATA["PAGINA " + $V{PAGE_NUMBER} + " DE " + $V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageFooter>

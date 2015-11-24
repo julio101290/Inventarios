@@ -862,15 +862,16 @@ public final class frmClientes extends javax.swing.JInternalFrame {
                     String fileName = System.getProperty("user.dir").concat("/src/reportes/"+strReporte+".jrxml");
                    
 
-                    if (fileName == null)
-                    {                
-                        System.out.println("No encuentro el archivo del reporte.");
-                        System.exit(2);
-                    }
+                  
 
                    
                    
                 File theFile = new File(fileName);
+                if (theFile.exists()==false){
+                    JOptionPane.showInternalMessageDialog(rootPane,"No se encontro el reporte en el directorio");
+                    System.exit(2);
+                }
+                    
                 JRDesignQuery newQuery = new JRDesignQuery();
                 JasperDesign jasperDesign = JRXmlLoader.load(theFile);
                 newQuery.setText(strConsulta);
