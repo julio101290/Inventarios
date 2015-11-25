@@ -90,7 +90,7 @@ ResultSet res;
     public void leerClientes(long intDesde ,long intCuantos,DefaultTableModel tablaClientes,String strBusqueda ){
         String strConsulta;
         String datos[]=new String [4];
-       // strConsulta="call PA_LeeClientes(" + intDesde +"," +","+ intCuantos+")";
+      
         strConsulta="call PA_LeeClientes("+intDesde+","+intCuantos+",'"+strBusqueda+"');";
       
         try{

@@ -643,25 +643,40 @@ public final class frmClientes extends javax.swing.JInternalFrame {
         
         long lngRegistros=1;
         long lngDesdeRegistro;
-      
+        
+        //DEFINIMOS LA TABLA MODELO
         DefaultTableModel tablaClientes = new DefaultTableModel();
         
+        //LE AGREGAMOS EL TITULO DE LAS COLUMNAS DE LA TABLA EN UN ARREGLO
         String strTitulos[]={"ID CLIENTE","NOMBRE","APELLIDO","RFC"};
+        
+        //LE ASIGNAMOS LAS COLUMNAS AL MODELO CON LA CADENA DE ARRIBA
         tablaClientes.setColumnIdentifiers(strTitulos);
+        
+        //LE ASIGNAMOS EL MODELO DE ARRIBA AL JTABLE 
         this.JTabClientes.setModel(tablaClientes);
+        
+                    //AHORA A LEER LOS DATOS
+        
+        //ASIGNAMOS CUANTOS REGISTROS POR HOJA TRAEREMOS
         lngRegistros=(Long.valueOf(this.txtNumReg.getText()));
         
+        //ASIGNAMOS DESDE QUE REGISTRO TRAERA LA CONSULTA SQL
         lngDesdeRegistro=(DesdeHoja*lngRegistros)-lngRegistros;
+        
+        //INSTANCEAMOS LA CLASE CLIENTE
         control_cliente classCliente= new control_cliente();
+        
+        //LEEMOS LA CLASE CLIENTE MANDANDOLE LOS PARAMETROS
         classCliente.leerClientes(lngDesdeRegistro, (Long.valueOf(this.txtNumReg.getText())),tablaClientes,strBusqueda);
         
+        //LE PONEMOS EL RESULTADO DE LA CONSULA AL JTABLE
         this.JTabClientes.setModel(tablaClientes);
         
+        //ASIGNAMOS LOS VALORES A LA PAGINACION
         lngRegistros = classCliente.leerCuantos("");
         lngNumPaginas= (lngRegistros/ (Long.valueOf( this.txtNumReg.getText())))+1;
         this.jlblTotalPaginas.setText(" De " + ( lngNumPaginas));
-        
-        //JOptionPane.showInternalMessageDialog(rootPane,tablaClientes.getRowCount());
         
     }
     

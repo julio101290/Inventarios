@@ -6,6 +6,7 @@
 package herramientas;
 
 import java.io.File;
+import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
@@ -40,10 +41,17 @@ public class Reportes {
                         System.out.println("No encuentro el archivo del reporte.");
                         System.exit(2);
                     }
-
-                   
+                        
+                  
                    
                 File theFile = new File(fileName);
+                
+                if(theFile.exists()==false){
+                    System.out.println("No encuentro el archivo del reporte.");
+                    JOptionPane.showInternalMessageDialog(null,"No se encontro el archivo de reporte");
+                    System.exit(2);
+                }
+                
                 JRDesignQuery newQuery = new JRDesignQuery();
                 JasperDesign jasperDesign = JRXmlLoader.load(theFile);
                 newQuery.setText(strConsulta);
