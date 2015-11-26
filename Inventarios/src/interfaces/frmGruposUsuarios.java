@@ -5,6 +5,10 @@
  */
 package interfaces;
 
+import clases.classGruposUsuarios;
+import clases.control_cliente;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author julio
@@ -16,6 +20,8 @@ public class frmGruposUsuarios extends javax.swing.JInternalFrame {
      */
     public frmGruposUsuarios() {
         initComponents();
+        limpiar();
+        defineTablaUsuarios("",1);
     }
 
     /**
@@ -47,11 +53,11 @@ public class frmGruposUsuarios extends javax.swing.JInternalFrame {
         btnImprimirReporte = new javax.swing.JButton();
         PanBotones = new javax.swing.JPanel();
         btnRegCliente = new javax.swing.JButton();
-        cancelclijButton2 = new javax.swing.JButton();
+        btnNuevo = new javax.swing.JButton();
         salirclijButton3 = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         JTabClientes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -227,10 +233,10 @@ public class frmGruposUsuarios extends javax.swing.JInternalFrame {
             }
         });
 
-        cancelclijButton2.setLabel("Nuevo");
-        cancelclijButton2.addActionListener(new java.awt.event.ActionListener() {
+        btnNuevo.setLabel("Nuevo");
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelclijButton2ActionPerformed(evt);
+                btnNuevoActionPerformed(evt);
             }
         });
 
@@ -254,7 +260,7 @@ public class frmGruposUsuarios extends javax.swing.JInternalFrame {
             PanBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PanBotonesLayout.createSequentialGroup()
                 .addGroup(PanBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(cancelclijButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnNuevo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRegCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
                 .addGap(32, 32, 32)
                 .addGroup(PanBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -271,7 +277,7 @@ public class frmGruposUsuarios extends javax.swing.JInternalFrame {
                     .addComponent(btnEliminar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanBotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelclijButton2)
+                    .addComponent(btnNuevo)
                     .addComponent(salirclijButton3))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -349,10 +355,10 @@ public class frmGruposUsuarios extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_btnRegClienteActionPerformed
 
-    private void cancelclijButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelclijButton2ActionPerformed
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
 
         //limpiar();
-    }//GEN-LAST:event_cancelclijButton2ActionPerformed
+    }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void salirclijButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salirclijButton3ActionPerformed
         this.dispose();
@@ -362,6 +368,55 @@ public class frmGruposUsuarios extends javax.swing.JInternalFrame {
        
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    public void limpiar(){
+        this.btnEliminar.setVisible(false);
+        this.btnNuevo.setVisible(false);
+        this.txtDescripcion.setText("");
+        this.txtBuscar.setText("");
+    }
+   
+    public void defineTablaUsuarios(String strBusqueda,long DesdeHoja){
+        
+        long lngRegistros=1;
+        long lngDesdeRegistro;
+        long lngNumPaginas;
+        
+        //DEFINIMOS LA TABLA MODELO
+        DefaultTableModel tablaGrupos = new DefaultTableModel();
+        
+        //LE AGREGAMOS EL TITULO DE LAS COLUMNAS DE LA TABLA EN UN ARREGLO
+        String strTitulos[]={"ID GRUPO","DESCRIPCION"};
+        
+        //LE ASIGNAMOS LAS COLUMNAS AL MODELO CON LA CADENA DE ARRIBA
+        tablaGrupos.setColumnIdentifiers(strTitulos);
+        
+        //LE ASIGNAMOS EL MODELO DE ARRIBA AL JTABLE 
+        this.JTabClientes.setModel(tablaGrupos);
+        
+                    //AHORA A LEER LOS DATOS
+        
+        //ASIGNAMOS CUANTOS REGISTROS POR HOJA TRAEREMOS
+        lngRegistros=(Long.valueOf(this.txtNumReg.getText()));
+        
+        //ASIGNAMOS DESDE QUE REGISTRO TRAERA LA CONSULTA SQL
+        lngDesdeRegistro=(DesdeHoja*lngRegistros)-lngRegistros;
+        
+        //INSTANCEAMOS LA CLASE CLIENTE
+        classGruposUsuarios classGruposUsuarios= new classGruposUsuarios();
+        
+        //LEEMOS LA CLASE CLIENTE MANDANDOLE LOS PARAMETROS
+        classGruposUsuarios.leerGrupos(lngDesdeRegistro, (Long.valueOf(this.txtNumReg.getText())),tablaGrupos,strBusqueda);
+        
+        //LE PONEMOS EL RESULTADO DE LA CONSULA AL JTABLE
+        this.JTabClientes.setModel(tablaGrupos);
+        
+        //ASIGNAMOS LOS VALORES A LA PAGINACION
+        lngRegistros = classGruposUsuarios.leerCuantos("");
+        lngNumPaginas= (lngRegistros/ (Long.valueOf( this.txtNumReg.getText())))+1;
+        this.jlblTotalPaginas.setText(" De " + ( lngNumPaginas));
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -372,8 +427,8 @@ public class frmGruposUsuarios extends javax.swing.JInternalFrame {
     private javax.swing.JPanel PanBotones;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnImprimirReporte;
+    private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnRegCliente;
-    private javax.swing.JButton cancelclijButton2;
     private javax.swing.JButton cmdAtras;
     private javax.swing.JButton cmdBuscar;
     private javax.swing.JButton cmdSiguiente1;
@@ -393,3 +448,5 @@ public class frmGruposUsuarios extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtPagina;
     // End of variables declaration//GEN-END:variables
 }
+
+

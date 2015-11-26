@@ -94,7 +94,7 @@ control_existencias ctrl = new control_existencias();
         jMenu1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jMenu1.setPreferredSize(new java.awt.Dimension(200, 50));
 
-        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_R, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem4.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_C, java.awt.event.InputEvent.CTRL_MASK));
         jMenuItem4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/bookmark-new.png"))); // NOI18N
         jMenuItem4.setText("Registrar");

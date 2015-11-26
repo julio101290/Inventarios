@@ -55,7 +55,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
         //        Object[] ciu = ctrl.combox("ciudad","Codigo_ciudad");
         //       // ciudad_combo.removeAllItems();
         //        for(int i=0;i<ciu.length;i++){
-        //       // ciudad_combo.addItem(ciu[i]);
+        //
         //        
         //    }
     }
