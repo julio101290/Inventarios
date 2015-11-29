@@ -5,7 +5,7 @@
  */
 package interfaces;
 
-import clases.classUsuarios;
+import clases.classUsuario;
 import herramientas.conexion;
 import java.io.File;
 import java.util.logging.Level;
@@ -157,7 +157,7 @@ public class frmLogueo extends javax.swing.JFrame {
             con.conectado();
             leerConfiguracion();
             frmPrincipal principal= new frmPrincipal();
-            classUsuarios usuarios = new classUsuarios();
+            classUsuario usuarios = new classUsuario();
             if (usuarios.blnChecaUsuarioContra("SELECT * FROM Usuarios "
                     + "where Usuario='"+
                     this.txtUsuario.getText() +"' and Contra='"

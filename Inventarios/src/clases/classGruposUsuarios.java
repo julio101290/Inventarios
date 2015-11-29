@@ -9,12 +9,15 @@ import herramientas.conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
+import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author julio
  */
+
 
 public class classGruposUsuarios {
     private conexion con;
@@ -55,6 +58,36 @@ public class classGruposUsuarios {
         
     }
     
+    public void llenarCombo(JComboBox Combo){
+        String strConsulta;
+        String datos[]=new String [2];
+        DecimalFormat formato = new DecimalFormat("0000");
+        
+        int intDesde=0;
+        int intCuantos=1000;
+        String strBusqueda="";
+        strConsulta="call PA_LeeGruposUsuarios("+intDesde+","+intCuantos+",'"+strBusqueda+"');";
+      
+        try{
+         
+         ps= con.conectado().prepareStatement(strConsulta);
+         res = ps.executeQuery();
+         
+         while(res.next()){
+             
+              datos[0]=formato.format( res.getDouble("IdGrupoUsuario")).toString();
+              datos[1]=res.getString("Descripcion");
+             
+              
+              Combo.addItem(datos[0] + " "+ datos[1]);
+         }
+            res.close();
+            System.out.println(res.getWarnings());
+            }catch(SQLException e){
+         System.out.println(e);
+        }
+        
+    }
     
     public long leerCuantos(String strBusqueda){
         String strConsulta;
@@ -89,7 +122,7 @@ public class classGruposUsuarios {
          String strConsulta="";
          String strRespuesta="";
          
-         strConsulta=strConsulta +"call PA_InsertaGrupoCliente ('"+this.strDescripcion+"');";
+         strConsulta=strConsulta +"call InsertaGrupoUsuario ('"+this.strDescripcion+"');";
          ps= con.conectado().prepareStatement(strConsulta);
          
          strRespuesta= herramientas.globales.strPreguntaSiNo("Desea agregar el grupo " + this.strDescripcion);

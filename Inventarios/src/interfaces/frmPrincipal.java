@@ -175,7 +175,9 @@ control_existencias ctrl = new control_existencias();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
+        frmUsuarios usuario = new frmUsuarios();
+        jDesktopPane1.add(usuario);
+        usuario.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
    

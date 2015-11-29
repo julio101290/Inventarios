@@ -49,7 +49,7 @@ public class Reportes {
                 if(theFile.exists()==false){
                     System.out.println("No encuentro el archivo del reporte.");
                     JOptionPane.showInternalMessageDialog(null,"No se encontro el archivo de reporte");
-                    System.exit(2);
+                    return;
                 }
                 
                 JRDesignQuery newQuery = new JRDesignQuery();
