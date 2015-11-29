@@ -590,7 +590,7 @@ public final class frmClientes extends javax.swing.JInternalFrame {
     
     private void btnRegClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegClienteActionPerformed
     
-        if (this.btnRegCliente.getLabel()=="Regsitrar"){            
+        if (this.btnRegCliente.getLabel()=="Registrar"){            
             control_cliente control = new control_cliente();
             control.strApellido=this.txtApellidos.getText();
             control.strCiudad=this.txtCiudad.getText();
