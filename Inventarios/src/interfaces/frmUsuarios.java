@@ -600,7 +600,7 @@ public final class frmUsuarios extends javax.swing.JInternalFrame {
             lngDesdeRegistro=(DesdeHoja*lngRegistros)-lngRegistros;
             strConsulta="call PA_LeeUsuarios("+lngDesdeRegistro.toString()+","+this.txtNumReg.getText()+",'"+this.txtBuscar.getText()+"')";
             System.out.println(strConsulta);
-            Reportes.lanzarReporte(strConsulta, "usuarios");
+            Reportes.lanzarReporte(strConsulta, "repUsuarios");
     }//GEN-LAST:event_btnImprimirReporteActionPerformed
 
     private void txtUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsuarioActionPerformed
