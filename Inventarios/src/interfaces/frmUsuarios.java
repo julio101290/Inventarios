@@ -424,7 +424,14 @@ public final class frmUsuarios extends javax.swing.JInternalFrame {
     
     private void btnRegUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegUsuarioActionPerformed
     
-        if (txtContraseña.getText()!=this.txtContraseña2.getText()){
+        String strPass1="";
+        String strPass2="";
+        
+        strPass1=txtContraseña.getText();
+        strPass2=txtContraseña2.getText();
+        
+        if (strPass1.equals(strPass2)){
+        } else {
             JOptionPane.showInternalMessageDialog(rootPane,"Las contraseñas no coinciden");
             return;
         }

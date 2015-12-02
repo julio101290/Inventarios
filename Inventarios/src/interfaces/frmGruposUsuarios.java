@@ -44,10 +44,19 @@ public class frmGruposUsuarios extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         JTabGrupos = new javax.swing.JTable();
         jPanDatos = new javax.swing.JPanel();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel1 = new javax.swing.JPanel();
         lblDescripcion = new javax.swing.JLabel();
         txtDescripcion = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         txtIDGrupo = new javax.swing.JTextField();
+        jPanel2 = new javax.swing.JPanel();
+        chkPermiteABCConfiguracion = new javax.swing.JCheckBox();
+        chkPermiteABCGrupos = new javax.swing.JCheckBox();
+        chkPermiteABCUsuarios = new javax.swing.JCheckBox();
+        chkPermiteABCClientes = new javax.swing.JCheckBox();
+        chkPermiteABCArticulos = new javax.swing.JCheckBox();
+        chkPermiteABCEntradasSalidas = new javax.swing.JCheckBox();
         jPanel4 = new javax.swing.JPanel();
         jlblNumReg = new javax.swing.JLabel();
         txtNumReg = new javax.swing.JTextField();
@@ -112,48 +121,119 @@ public class frmGruposUsuarios extends javax.swing.JInternalFrame {
         jpanTablaLayout.setHorizontalGroup(
             jpanTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanTablaLayout.createSequentialGroup()
-                .addGap(0, 12, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 403, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(107, 107, 107))
         );
         jpanTablaLayout.setVerticalGroup(
             jpanTablaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpanTablaLayout.createSequentialGroup()
-                .addGap(0, 12, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         lblDescripcion.setText("Descripcion:");
 
         jLabel1.setText("ID Grupo:");
 
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblDescripcion)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                    .addComponent(txtIDGrupo))
+                .addContainerGap(542, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblDescripcion)
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtIDGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(137, Short.MAX_VALUE))
+        );
+
+        jTabbedPane1.addTab("Datos Grupo", jPanel1);
+
+        chkPermiteABCConfiguracion.setText("Permite Acceso Configuracion");
+
+        chkPermiteABCGrupos.setText("Permite Acceso Grupos");
+
+        chkPermiteABCUsuarios.setText("Permite Acceso Usuarios");
+
+        chkPermiteABCClientes.setText("Permite Acceso Clientes");
+
+        chkPermiteABCArticulos.setText("Permite Acceso Articulos");
+
+        chkPermiteABCEntradasSalidas.setText("Permite Dar Entrada y Salida a Inventario");
+        chkPermiteABCEntradasSalidas.setToolTipText("");
+        chkPermiteABCEntradasSalidas.setActionCommand("Permite Dar Entrada y Salida a Inventario");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(chkPermiteABCConfiguracion)
+                        .addGap(90, 90, 90)
+                        .addComponent(chkPermiteABCEntradasSalidas))
+                    .addComponent(chkPermiteABCGrupos)
+                    .addComponent(chkPermiteABCUsuarios)
+                    .addComponent(chkPermiteABCClientes)
+                    .addComponent(chkPermiteABCArticulos))
+                .addContainerGap(160, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(chkPermiteABCConfiguracion)
+                    .addComponent(chkPermiteABCEntradasSalidas))
+                .addGap(18, 18, 18)
+                .addComponent(chkPermiteABCGrupos)
+                .addGap(18, 18, 18)
+                .addComponent(chkPermiteABCUsuarios)
+                .addGap(18, 18, 18)
+                .addComponent(chkPermiteABCClientes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(chkPermiteABCArticulos)
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Derechos", jPanel2);
+
         javax.swing.GroupLayout jPanDatosLayout = new javax.swing.GroupLayout(jPanDatos);
         jPanDatos.setLayout(jPanDatosLayout);
         jPanDatosLayout.setHorizontalGroup(
             jPanDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanDatosLayout.createSequentialGroup()
-                .addGroup(jPanDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanDatosLayout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(lblDescripcion))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanDatosLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtDescripcion, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE)
-                    .addComponent(txtIDGrupo)))
+                .addContainerGap()
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
         jPanDatosLayout.setVerticalGroup(
             jPanDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanDatosLayout.createSequentialGroup()
-                .addGroup(jPanDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblDescripcion)
-                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanDatosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(txtIDGrupo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 62, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jTabbedPane1)
+                .addContainerGap())
         );
 
         jlblNumReg.setText("Registros");
@@ -248,7 +328,7 @@ public class frmGruposUsuarios extends javax.swing.JInternalFrame {
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lblBuscar))
                     .addComponent(cmdBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(37, 37, 37))
+                .addGap(68, 68, 68))
         );
 
         btnRegCliente.setText("Registrar");
@@ -323,32 +403,31 @@ public class frmGruposUsuarios extends javax.swing.JInternalFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jpanTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(PanBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(PanBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(salirclijButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(135, 135, 135)
-                        .addComponent(salirclijButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addComponent(jpanTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jpanTabla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanDatos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpanTabla, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanDatos, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(PanBotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(salirclijButton3)
-                        .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(salirclijButton3))
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
@@ -373,6 +452,12 @@ public class frmGruposUsuarios extends javax.swing.JInternalFrame {
             
             this.txtIDGrupo.setText(datosGrupo[0]);
             this.txtDescripcion.setText(datosGrupo[1]);
+            this.chkPermiteABCConfiguracion.setSelected(grupos.blnAccesoConfiguracion);
+            this.chkPermiteABCGrupos.setSelected(grupos.blnAccesoGrupos);
+            this.chkPermiteABCUsuarios.setSelected(grupos.blnAccesoUsuarios);
+            this.chkPermiteABCClientes.setSelected(grupos.blnAccesoClientes);
+            this.chkPermiteABCArticulos.setSelected(grupos.blnAccesoArticulos);
+            this.chkPermiteABCEntradasSalidas.setSelected(grupos.blnAccesoInventarios);
             
             this.btnEliminar.setVisible(true);
             this.btnNuevo.setVisible(true);
@@ -435,17 +520,23 @@ long lngValor=0;
         if (this.btnRegCliente.getLabel()=="Registrar"){
                 classGruposUsuarios grupos = new classGruposUsuarios();
                 String strRespuesta="";
-                
-                
+
                 
                 
                 grupos.strDescripcion=this.txtDescripcion.getText();
+                grupos.blnAccesoConfiguracion=this.chkPermiteABCConfiguracion.isSelected();
+                grupos.blnAccesoGrupos=this.chkPermiteABCGrupos.isSelected();
+                grupos.blnAccesoUsuarios=this.chkPermiteABCUsuarios.isSelected();
+                grupos.blnAccesoClientes=this.chkPermiteABCClientes.isSelected();
+                grupos.blnAccesoArticulos=this.chkPermiteABCArticulos.isSelected();
+                grupos.blnAccesoInventarios=this.chkPermiteABCEntradasSalidas.isSelected();
                 
              
                     try {
                         grupos.ingresarGrupo();
                         defineTablaUsuarios("",1);
                         limpiar();
+                        JOptionPane.showInternalMessageDialog(rootPane,"Registrado Correctamente");
                     } catch (SQLException ex) {
                         Logger.getLogger(frmGruposUsuarios.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -457,9 +548,17 @@ long lngValor=0;
             classGruposUsuarios grupos =new classGruposUsuarios();
             grupos.lngIDGrupo=Long.valueOf(this.txtIDGrupo.getText());
             grupos.strDescripcion=this.txtDescripcion.getText();
+          
+            grupos.blnAccesoConfiguracion=this.chkPermiteABCConfiguracion.isSelected();
+            grupos.blnAccesoGrupos=this.chkPermiteABCGrupos.isSelected();
+            grupos.blnAccesoUsuarios=this.chkPermiteABCUsuarios.isSelected();
+            grupos.blnAccesoClientes=this.chkPermiteABCClientes.isSelected();
+            grupos.blnAccesoArticulos=this.chkPermiteABCArticulos.isSelected();
+            grupos.blnAccesoInventarios=this.chkPermiteABCEntradasSalidas.isSelected();
             try {
                 grupos.actualizarGrupo();
                 this.defineTablaUsuarios(this.txtBuscar.getText(), Long.valueOf( this.txtPagina.getText()));
+                JOptionPane.showInternalMessageDialog(rootPane,"Actualizado Correctamente");
             } catch (SQLException ex) {
                 Logger.getLogger(frmGruposUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -481,6 +580,7 @@ long lngValor=0;
         try {
             grupos.eliminarGrupo();
             defineTablaUsuarios("",1);
+            JOptionPane.showInternalMessageDialog(rootPane,"Eliminado Correctamente");
         } catch (SQLException ex) {
             Logger.getLogger(frmGruposUsuarios.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -493,6 +593,12 @@ long lngValor=0;
         this.txtBuscar.setText("");
         this.txtIDGrupo.setEnabled(false);
         this.btnRegCliente.setLabel("Registrar");
+        this.chkPermiteABCConfiguracion.setSelected(false);
+        this.chkPermiteABCGrupos.setSelected(false);
+        this.chkPermiteABCUsuarios.setSelected(false);
+        this.chkPermiteABCClientes.setSelected(false);
+        this.chkPermiteABCArticulos.setSelected(false);
+        this.chkPermiteABCEntradasSalidas.setSelected(false);
         
     }
    
@@ -557,13 +663,22 @@ long lngValor=0;
     private javax.swing.JButton btnImprimirReporte;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnRegCliente;
+    private javax.swing.JCheckBox chkPermiteABCArticulos;
+    private javax.swing.JCheckBox chkPermiteABCClientes;
+    private javax.swing.JCheckBox chkPermiteABCConfiguracion;
+    private javax.swing.JCheckBox chkPermiteABCEntradasSalidas;
+    private javax.swing.JCheckBox chkPermiteABCGrupos;
+    private javax.swing.JCheckBox chkPermiteABCUsuarios;
     private javax.swing.JButton cmdAtras;
     private javax.swing.JButton cmdBuscar;
     private javax.swing.JButton cmdSiguiente1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanDatos;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel jlblNumReg;
     private javax.swing.JLabel jlblNumReg2;
     private javax.swing.JLabel jlblTotalPaginas;

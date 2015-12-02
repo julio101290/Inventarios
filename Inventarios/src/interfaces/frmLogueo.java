@@ -7,6 +7,7 @@ package interfaces;
 
 import clases.classUsuario;
 import herramientas.conexion;
+import herramientas.globales;
 import java.io.File;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -153,6 +154,8 @@ public class frmLogueo extends javax.swing.JFrame {
             con.strPSWSQL="";
             con.strUsuarioSQL="root";
             con.strBaseDeDatos=this.txtBase.getText();
+            
+            String datosUsuario[]=new String [6];
          
             con.conectado();
             leerConfiguracion();
@@ -163,6 +166,13 @@ public class frmLogueo extends javax.swing.JFrame {
                     this.txtUsuario.getText() +"' and Contra='"
                     +this.pswContraseña.getText()+"'")==true){
                 this.setVisible(false);
+                
+               classUsuario u= new classUsuario();
+               datosUsuario=u.leerUsuario(this.txtUsuario.getText());
+                
+                globales.lngIDGrupo=Long.valueOf(datosUsuario[5]);
+                globales.obtenerDerechosGrupo();
+                principal.ejecutarDerecho();
                 principal.setVisible(true);
             }
             else

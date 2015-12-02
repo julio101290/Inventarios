@@ -8,6 +8,7 @@ package interfaces;
 import clases.control_existencias;
 import herramientas.conexion;
 import static herramientas.conexion.strServidor;
+import herramientas.globales;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -24,7 +25,7 @@ control_existencias ctrl = new control_existencias();
      */
     public frmPrincipal() {
         initComponents();
-
+        //ejecutarDerecho();
     }
 
     /**
@@ -164,7 +165,7 @@ control_existencias ctrl = new control_existencias();
           frmClientes cli = new frmClientes();       
           jDesktopPane1.add(cli);
           cli.show();          
-            
+      
     
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
@@ -179,7 +180,13 @@ control_existencias ctrl = new control_existencias();
         jDesktopPane1.add(usuario);
         usuario.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
-
+public void ejecutarDerecho(){
+    jMenuItem3.setVisible(globales.blnAccesoArticulos);
+    jMenuItem4.setVisible(globales.blnAccesoClientes);
+    jMenuItem2.setVisible(globales.blnAccesoGrupos);
+    jMenuItem1.setVisible(globales.blnAccesoUsuarios);
+    
+}
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktopPane1;
