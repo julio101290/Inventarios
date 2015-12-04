@@ -27,6 +27,7 @@ public class frmLogueo extends javax.swing.JFrame {
     /**
      * Creates new form frmLogueo
      */
+    public static frmPrincipal principal= new frmPrincipal();
     public frmLogueo() {
         initComponents();
         leerConfiguracion();
@@ -159,7 +160,7 @@ public class frmLogueo extends javax.swing.JFrame {
          
             con.conectado();
             leerConfiguracion();
-            frmPrincipal principal= new frmPrincipal();
+            
             classUsuario usuarios = new classUsuario();
             if (usuarios.blnChecaUsuarioContra("SELECT * FROM Usuarios "
                     + "where Usuario='"+

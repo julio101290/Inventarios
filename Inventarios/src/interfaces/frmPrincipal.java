@@ -25,7 +25,6 @@ control_existencias ctrl = new control_existencias();
      */
     public frmPrincipal() {
         initComponents();
-        //ejecutarDerecho();
     }
 
     /**
@@ -43,6 +42,7 @@ control_existencias ctrl = new control_existencias();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        miDatosEmpresa = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
@@ -57,7 +57,7 @@ control_existencias ctrl = new control_existencias();
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Los Mochis.jpg"))); // NOI18N
         jLabel1.setLabelFor(jDesktopPane1);
         jDesktopPane1.add(jLabel1);
-        jLabel1.setBounds(0, 0, 1480, 610);
+        jLabel1.setBounds(0, 0, 1480, 570);
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/server-database.png"))); // NOI18N
         jMenu6.setText("Configuración         ");
@@ -86,6 +86,16 @@ control_existencias ctrl = new control_existencias();
             }
         });
         jMenu6.add(jMenuItem1);
+
+        miDatosEmpresa.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        miDatosEmpresa.setText("Datos Empresa");
+        miDatosEmpresa.setActionCommand("");
+        miDatosEmpresa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                miDatosEmpresaActionPerformed(evt);
+            }
+        });
+        jMenu6.add(miDatosEmpresa);
 
         jMenuBar1.add(jMenu6);
 
@@ -143,7 +153,7 @@ control_existencias ctrl = new control_existencias();
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
+                .addComponent(jDesktopPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 605, Short.MAX_VALUE)
                 .addGap(24, 24, 24))
         );
 
@@ -180,6 +190,12 @@ control_existencias ctrl = new control_existencias();
         jDesktopPane1.add(usuario);
         usuario.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void miDatosEmpresaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_miDatosEmpresaActionPerformed
+        frmInformacionEmpresa dempresa = new frmInformacionEmpresa();
+        jDesktopPane1.add(dempresa);
+        dempresa.setVisible(true);
+    }//GEN-LAST:event_miDatosEmpresaActionPerformed
 public void ejecutarDerecho(){
     jMenuItem3.setVisible(globales.blnAccesoArticulos);
     jMenuItem4.setVisible(globales.blnAccesoClientes);
@@ -189,8 +205,8 @@ public void ejecutarDerecho(){
 }
    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JLabel jLabel1;
+    public static javax.swing.JDesktopPane jDesktopPane1;
+    public static javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu6;
@@ -199,5 +215,6 @@ public void ejecutarDerecho(){
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem miDatosEmpresa;
     // End of variables declaration//GEN-END:variables
 }

@@ -126,7 +126,8 @@ public class classGruposUsuarios {
        
         }
     
-        public boolean ingresarGrupo() throws SQLException
+        
+    public boolean ingresarGrupo() throws SQLException
     {               
          String strConsulta="";
          String strRespuesta="";
@@ -167,7 +168,7 @@ public class classGruposUsuarios {
          return true;
     }
     
-       public boolean actualizarGrupo() throws SQLException
+public boolean actualizarGrupo() throws SQLException
     {               
          String strConsulta="";
          String strRespuesta="";
@@ -193,7 +194,7 @@ public class classGruposUsuarios {
          return true;
     }
         
-        public String[] leerGrupo(String strGrupo){
+    public String[] leerGrupo(String strGrupo){
         String strConsulta;
         String datos[]=new String [12];
         
