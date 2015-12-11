@@ -126,7 +126,7 @@ public class classPaises {
          return true;
     }
     
-    public boolean actualizarGrupo() throws SQLException
+    public boolean actualizarPais() throws SQLException
     {               
          String strConsulta="";
          String strRespuesta="";
@@ -148,7 +148,7 @@ public class classPaises {
     }
     
     
-    public boolean ingresarGrupo() throws SQLException
+    public boolean ingresarPais() throws SQLException
     {               
          String strConsulta="";
          String strRespuesta="";
@@ -157,7 +157,7 @@ public class classPaises {
                  + ");";
          ps= con.conectado().prepareStatement(strConsulta);
          
-         strRespuesta= herramientas.globales.strPreguntaSiNo("Desea agregar el grupo " + this.strPais);
+         strRespuesta= herramientas.globales.strPreguntaSiNo("Desea agregar el pais " + this.strPais);
          if (strRespuesta=="SI"){
             res = ps.executeQuery();
          }
