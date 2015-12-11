@@ -266,7 +266,9 @@ control_existencias ctrl = new control_existencias();
     }//GEN-LAST:event_menuBodegasActionPerformed
 
     private void menuPaisesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPaisesActionPerformed
-        // TODO add your handling code here:
+        frmPaises paises = new frmPaises();
+        jDesktopPane1.add(paises);
+        paises.setVisible(true);
     }//GEN-LAST:event_menuPaisesActionPerformed
 public void ejecutarDerecho(){
     jMenuItem3.setVisible(globales.blnAccesoArticulos);

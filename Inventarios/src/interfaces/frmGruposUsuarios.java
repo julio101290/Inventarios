@@ -6,7 +6,6 @@
 package interfaces;
 
 import clases.classGruposUsuarios;
-import clases.control_cliente;
 import herramientas.Reportes;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -613,7 +612,7 @@ long lngValor=0;
         DefaultTableModel tablaGrupos = new DefaultTableModel();
         
         //LE AGREGAMOS EL TITULO DE LAS COLUMNAS DE LA TABLA EN UN ARREGLO
-        String strTitulos[]={"ID GRUPO","DESCRIPCION"};
+        String strTitulos[]={"ID PAIS","NOMBRE"};
         
         //LE ASIGNAMOS LAS COLUMNAS AL MODELO CON LA CADENA DE ARRIBA
         tablaGrupos.setColumnIdentifiers(strTitulos);

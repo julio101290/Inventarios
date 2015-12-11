@@ -15,15 +15,23 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author julio
  */
+
 public class classPaises {
     
     private conexion con;
     PreparedStatement ps;
     ResultSet res;
+    private Sentencias_sql sql; 
     
     public Long     lngIdPais;
     public String   strPais;
     
+
+    
+    public classPaises(){
+        sql = new Sentencias_sql();
+        con = new conexion();
+}
     public void leerPais(String strGrupo){
         String strConsulta;
         String datos[]=new String [12];
@@ -58,7 +66,7 @@ public class classPaises {
         String strConsulta;
         String datos[]=new String [4];
       
-        strConsulta="call PA_LeeGruposUsuarios("+intDesde+","+intCuantos+",'"+strBusqueda+"');";
+        strConsulta="call PA_LeePaises ("+intDesde+","+intCuantos+",'"+strBusqueda+"');";
       
         try{
          
@@ -68,7 +76,7 @@ public class classPaises {
          while(res.next()){
               //System.out.println(res.getString("Nombres"));
               datos[0]=res.getString("idPais");
-              datos[1]=res.getString("nombrePais");
+              datos[1]=res.getString("Descripcion");
              
               tablaPaises.addRow(datos);
          }
@@ -84,7 +92,7 @@ public class classPaises {
     public long leerCuantos(String strBusqueda){
         String strConsulta;
         long cuantos = 0;
-        strConsulta="call PA_CuantosPaises('" +strBusqueda +"');";
+        strConsulta="call PA_LeeCuantosPaises('" +strBusqueda +"');";
       
         try{
          
