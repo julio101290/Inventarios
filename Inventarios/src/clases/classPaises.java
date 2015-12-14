@@ -32,11 +32,11 @@ public class classPaises {
         sql = new Sentencias_sql();
         con = new conexion();
 }
-    public void leerPais(String strGrupo){
+    public void leerPais(String strPais){
         String strConsulta;
         String datos[]=new String [12];
         
-        strConsulta="call PA_LeerPais ("+strGrupo
+        strConsulta="call PA_LeerPais ("+strPais
                 + ");";
      
       
@@ -46,8 +46,8 @@ public class classPaises {
          res = ps.executeQuery();
          
          while(res.next()){
-              this.lngIdPais=res.getLong("idPais");
-              this.strPais=res.getNString("NombrePais");
+              this.lngIdPais=Long.valueOf(res.getString("idPais"));
+              this.strPais=res.getString("Descripcion");
 
                       
               res.close();

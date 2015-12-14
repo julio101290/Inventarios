@@ -234,7 +234,6 @@ control_existencias ctrl = new control_existencias();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-            
                
           frmClientes cli = new frmClientes();       
           jDesktopPane1.add(cli);
@@ -275,7 +274,6 @@ public void ejecutarDerecho(){
     jMenuItem4.setVisible(globales.blnAccesoClientes);
     jMenuItem2.setVisible(globales.blnAccesoGrupos);
     jMenuItem1.setVisible(globales.blnAccesoUsuarios);
-    
 }
    
     // Variables declaration - do not modify//GEN-BEGIN:variables

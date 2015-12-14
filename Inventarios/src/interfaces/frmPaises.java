@@ -41,7 +41,7 @@ public class frmPaises extends javax.swing.JInternalFrame {
         tabPaises = new javax.swing.JScrollPane();
         JTabPaises = new javax.swing.JTable();
         PanBotones2 = new javax.swing.JPanel();
-        btnRegCliente = new javax.swing.JButton();
+        btnRegPais = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnImprimirReporte = new javax.swing.JButton();
@@ -63,10 +63,9 @@ public class frmPaises extends javax.swing.JInternalFrame {
         idPais = new javax.swing.JLabel();
         txtIdPais = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Paises");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setLocationByPlatform(true);
 
         JTabPaises.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -92,6 +91,15 @@ public class frmPaises extends javax.swing.JInternalFrame {
             }
         });
         JTabPaises.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+        JTabPaises.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                JTabPaisesAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         JTabPaises.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 JTabPaisesMouseClicked(evt);
@@ -99,10 +107,10 @@ public class frmPaises extends javax.swing.JInternalFrame {
         });
         tabPaises.setViewportView(JTabPaises);
 
-        btnRegCliente.setText("Registrar");
-        btnRegCliente.addActionListener(new java.awt.event.ActionListener() {
+        btnRegPais.setText("Registrar");
+        btnRegPais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegClienteActionPerformed(evt);
+                btnRegPaisActionPerformed(evt);
             }
         });
 
@@ -144,7 +152,7 @@ public class frmPaises extends javax.swing.JInternalFrame {
                     .addGroup(PanBotones2Layout.createSequentialGroup()
                         .addGroup(PanBotones2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnNuevo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnRegCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
+                            .addComponent(btnRegPais, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
                         .addGap(27, 27, 27)
                         .addGroup(PanBotones2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnImprimirReporte, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
@@ -159,7 +167,7 @@ public class frmPaises extends javax.swing.JInternalFrame {
             .addGroup(PanBotones2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(PanBotones2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegCliente)
+                    .addComponent(btnRegPais)
                     .addComponent(btnEliminar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanBotones2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -330,7 +338,7 @@ public class frmPaises extends javax.swing.JInternalFrame {
         tabPaises = new javax.swing.JScrollPane();
         JTabPaises = new javax.swing.JTable();
         PanBotones2 = new javax.swing.JPanel();
-        btnRegCliente = new javax.swing.JButton();
+        btnRegPais = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
         btnImprimirReporte = new javax.swing.JButton();
@@ -388,10 +396,10 @@ public class frmPaises extends javax.swing.JInternalFrame {
         });
         tabPaises.setViewportView(JTabPaises);
 
-        btnRegCliente.setText("Registrar");
-        btnRegCliente.addActionListener(new java.awt.event.ActionListener() {
+        btnRegPais.setText("Registrar");
+        btnRegPais.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegClienteActionPerformed(evt);
+                btnRegPaisActionPerformed(evt);
             }
         });
 
@@ -433,7 +441,7 @@ public class frmPaises extends javax.swing.JInternalFrame {
                     .addGroup(PanBotones2Layout.createSequentialGroup()
                         .addGroup(PanBotones2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnNuevo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnRegCliente, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
+                            .addComponent(btnRegPais, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE))
                         .addGap(27, 27, 27)
                         .addGroup(PanBotones2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnImprimirReporte, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
@@ -448,7 +456,7 @@ public class frmPaises extends javax.swing.JInternalFrame {
             .addGroup(PanBotones2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(PanBotones2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnRegCliente)
+                    .addComponent(btnRegPais)
                     .addComponent(btnEliminar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(PanBotones2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -636,16 +644,16 @@ public class frmPaises extends javax.swing.JInternalFrame {
             this.btnEliminar.setVisible(true);
             this.btnNuevo.setVisible(true);
 
-            if(Long.valueOf( datosGrupo[0])>0){
-                this.btnRegCliente.setLabel("Actualizar");
+            if(paises.lngIdPais>0){
+                this.btnRegPais.setLabel("Actualizar");
             }
 
         }
     }//GEN-LAST:event_JTabPaisesMouseClicked
 
-    private void btnRegClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegClienteActionPerformed
+    private void btnRegPaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegPaisActionPerformed
 
-        if (this.btnRegCliente.getLabel()=="Registrar"){
+        if (this.btnRegPais.getLabel()=="Registrar"){
             classPaises paises = new classPaises();
             String strRespuesta="";
 
@@ -658,7 +666,7 @@ public class frmPaises extends javax.swing.JInternalFrame {
                 limpiar();
                 JOptionPane.showInternalMessageDialog(rootPane,"Registrado Correctamente");
             } catch (SQLException ex) {
-                Logger.getLogger(frmGruposUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(frmPaises.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
@@ -678,7 +686,7 @@ public class frmPaises extends javax.swing.JInternalFrame {
             }
 
         }
-    }//GEN-LAST:event_btnRegClienteActionPerformed
+    }//GEN-LAST:event_btnRegPaisActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         limpiar();
@@ -782,7 +790,7 @@ public class frmPaises extends javax.swing.JInternalFrame {
         this.txtNombrePais.setText("");
         this.txtBuscar.setText("");
         this.txtIdPais.setEnabled(false);
-        this.btnRegCliente.setLabel("Registrar");
+        this.btnRegPais.setLabel("Registrar");
   
     }
     
@@ -793,6 +801,10 @@ public class frmPaises extends javax.swing.JInternalFrame {
     private void cmdSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSiguienteActionPerformed
 
     }//GEN-LAST:event_cmdSiguienteActionPerformed
+
+    private void JTabPaisesAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_JTabPaisesAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JTabPaisesAncestorAdded
 
     /**
      * @param args the command line arguments
@@ -805,7 +817,7 @@ public class frmPaises extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnImprimirReporte;
     private javax.swing.JButton btnNuevo;
-    private javax.swing.JButton btnRegCliente;
+    private javax.swing.JButton btnRegPais;
     private javax.swing.JButton cmdAtras;
     private javax.swing.JButton cmdSiguiente;
     private javax.swing.JLabel idPais;
