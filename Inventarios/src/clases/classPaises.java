@@ -139,7 +139,7 @@ public class classPaises {
          String strConsulta="";
          String strRespuesta="";
          
-         strConsulta=strConsulta +"call PA_ActualizarPais  ("+this.lngIdPais+",'"+ this.strPais 
+         strConsulta=strConsulta +"call PA_ActualizaPais  ("+this.lngIdPais+",'"+ this.strPais 
     
                  + "');";
       

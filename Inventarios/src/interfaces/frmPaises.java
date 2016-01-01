@@ -26,7 +26,9 @@ public class frmPaises extends javax.swing.JInternalFrame {
     long lngNumPaginas=0;
     public frmPaises() {
         initComponents();
+        limpiar();
         defineTablaPaises("",1);
+       
     }
 
     /**
