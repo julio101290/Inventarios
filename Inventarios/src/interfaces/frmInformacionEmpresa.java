@@ -199,6 +199,11 @@ public class frmInformacionEmpresa extends javax.swing.JInternalFrame{
         btnGuardar.setText("Guardar");
 
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -256,6 +261,10 @@ public class frmInformacionEmpresa extends javax.swing.JInternalFrame{
         
  
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     /**
      * @param args the command line arguments

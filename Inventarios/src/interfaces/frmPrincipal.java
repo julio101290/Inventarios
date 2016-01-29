@@ -104,6 +104,11 @@ control_existencias ctrl = new control_existencias();
         menuEstados.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         menuEstados.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/estados.png"))); // NOI18N
         menuEstados.setText("Estados");
+        menuEstados.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuEstadosActionPerformed(evt);
+            }
+        });
         menuUbiicaciones.add(menuEstados);
 
         jMenu6.add(menuUbiicaciones);
@@ -269,6 +274,12 @@ control_existencias ctrl = new control_existencias();
         jDesktopPane1.add(paises);
         paises.setVisible(true);
     }//GEN-LAST:event_menuPaisesActionPerformed
+
+    private void menuEstadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEstadosActionPerformed
+        frmEstados estados = new frmEstados();
+        jDesktopPane1.add(estados);
+        estados.setVisible(true);
+    }//GEN-LAST:event_menuEstadosActionPerformed
 public void ejecutarDerecho(){
     jMenuItem3.setVisible(globales.blnAccesoArticulos);
     jMenuItem4.setVisible(globales.blnAccesoClientes);
