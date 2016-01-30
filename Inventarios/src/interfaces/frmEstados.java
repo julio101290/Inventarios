@@ -13,6 +13,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import herramientas.globales;
+import static herramientas.globales.llenarComboGlobal;
 
 /**
  *
@@ -26,6 +28,9 @@ public class frmEstados extends javax.swing.JInternalFrame {
     long lngNumPaginas=0;
     public frmEstados() {
         initComponents();
+        this.cboPaises.removeAllItems();
+        llenarComboGlobal(this.cboPaises,"select idPais,Descripcion from paises;");
+        
         
     }
 
@@ -57,6 +62,7 @@ public class frmEstados extends javax.swing.JInternalFrame {
         idEstado = new javax.swing.JLabel();
         txtIdEstado = new javax.swing.JTextField();
         lblPais = new javax.swing.JLabel();
+        cboPaises = new javax.swing.JComboBox();
         PanBotones2 = new javax.swing.JPanel();
         btnRegEstado = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
@@ -64,7 +70,7 @@ public class frmEstados extends javax.swing.JInternalFrame {
         btnImprimirReporte = new javax.swing.JButton();
         salirclijButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         JTabEstados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -196,6 +202,13 @@ public class frmEstados extends javax.swing.JInternalFrame {
 
         lblPais.setText("Pais:");
 
+        cboPaises.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboPaises.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboPaisesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jpanEstadoLayout = new javax.swing.GroupLayout(jpanEstado);
         jpanEstado.setLayout(jpanEstadoLayout);
         jpanEstadoLayout.setHorizontalGroup(
@@ -209,14 +222,17 @@ public class frmEstados extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpanEstadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtNombreEstado, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
-                    .addComponent(txtIdEstado))
-                .addContainerGap(32, Short.MAX_VALUE))
+                    .addComponent(txtIdEstado)
+                    .addComponent(cboPaises, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         jpanEstadoLayout.setVerticalGroup(
             jpanEstadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpanEstadoLayout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(lblPais)
+                .addGap(15, 15, 15)
+                .addGroup(jpanEstadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblPais)
+                    .addComponent(cboPaises, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jpanEstadoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblNombreEstado)
@@ -313,8 +329,8 @@ public class frmEstados extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(PanBotones2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(panCapturaEstados, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(panCapturaEstados, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -325,7 +341,7 @@ public class frmEstados extends javax.swing.JInternalFrame {
                     .addComponent(tabPaises, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 107, Short.MAX_VALUE)
                     .addComponent(PanBotones2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(4, 4, 4))
         );
@@ -515,6 +531,10 @@ public class frmEstados extends javax.swing.JInternalFrame {
         this.dispose();
     }//GEN-LAST:event_salirclijButtonActionPerformed
 
+    private void cboPaisesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboPaisesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboPaisesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -527,6 +547,7 @@ public class frmEstados extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnImprimirReporte;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnRegEstado;
+    private javax.swing.JComboBox cboPaises;
     private javax.swing.JButton cmdAtras;
     private javax.swing.JButton cmdSiguiente;
     private javax.swing.JLabel idEstado;

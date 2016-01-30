@@ -6,6 +6,11 @@
 package herramientas;
 
 import clases.classGruposUsuarios;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.text.DecimalFormat;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 
 /**
@@ -21,6 +26,11 @@ import javax.swing.JOptionPane;
     public static boolean  blnAccesoClientes;
     public static boolean  blnAccesoArticulos;
     public static boolean  blnAccesoInventarios;
+    
+    private static conexion con;
+    private static PreparedStatement ps;
+    private static ResultSet res;
+    
             
 
     
@@ -62,5 +72,38 @@ import javax.swing.JOptionPane;
             }
     return null;
     } 
+    
+    public static void llenarComboGlobal(JComboBox Combo,String strConsulta){
+     
+            
+        con = new conexion();
+        String datos[]=new String [2];
+        DecimalFormat formato = new DecimalFormat("0000");
+        
+        int intDesde=0;
+        int intCuantos=1000;
+        String strBusqueda="";
+        
+      
+        try{
+         
+         ps= con.conectado().prepareStatement(strConsulta);
+         res = ps.executeQuery();
+         
+         while(res.next()){
+             
+              datos[0]=formato.format( res.getDouble(1));
+              datos[1]=res.getString(2) ;
+             
+              
+              Combo.addItem(datos[0] + " "+ datos[1]);
+         }
+            res.close();
+            System.out.println(res.getWarnings());
+            }catch(SQLException e){
+         System.out.println(e);
+        }
+        
+    }
 
 }
