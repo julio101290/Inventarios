@@ -9,6 +9,7 @@ import herramientas.conexion;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -24,6 +25,7 @@ public class classEstados {
     private Sentencias_sql sql; 
     
     public Long     lngIdEstado;
+    public String   StrPais;
     public String   strEstado;
     
 
@@ -32,12 +34,12 @@ public class classEstados {
         sql = new Sentencias_sql();
         con = new conexion();
 }
-    public void leerEstado(String strEstado){
+    public void leerEstado(String strEstado,String strPais){
         String strConsulta;
-        String datos[]=new String [12];
-        
+        String datos[]=new String [5];
+        DecimalFormat formato = new DecimalFormat("0000");
         strConsulta="call PA_LeerEstado ("+strEstado
-                + ");";
+                + ","+strPais+");";
      
       
         try{
@@ -48,7 +50,7 @@ public class classEstados {
          while(res.next()){
               this.lngIdEstado=Long.valueOf(res.getString("idEstado"));
               this.strEstado=res.getString("Descripcion");
-
+              this.StrPais=formato.format(res.getBigDecimal("idPais"))+" "+res.getString("NombrePais");
                       
               res.close();
               
@@ -62,11 +64,11 @@ public class classEstados {
           }
         }
     
-    public void leerEstados(long intDesde ,long intCuantos,DefaultTableModel tablaEstadoes,String strBusqueda ){
+    public void leerEstados(long intDesde ,long intCuantos,DefaultTableModel tablaEstadoes,String strBusqueda,long lngPais ){
         String strConsulta;
         String datos[]=new String [4];
       
-        strConsulta="call PA_LeeEstados ("+intDesde+","+intCuantos+",'"+strBusqueda+"');";
+        strConsulta="call PA_LeeEstados ("+intDesde+","+intCuantos+",'"+strBusqueda+"',"+lngPais+");";
       
         try{
          
