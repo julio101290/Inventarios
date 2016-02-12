@@ -29,6 +29,7 @@ public class frmEstados extends javax.swing.JInternalFrame {
     public frmEstados() {
         initComponents();
         //this.cboPaises.removeAllItems();
+        limpiar();
         llenarComboGlobal(this.cboPaises,"select idPais,Descripcion from Paises;");
         this.cboPaises.setSelectedIndex(1);
         defineTablaEstados("",1,1);
@@ -56,6 +57,7 @@ public class frmEstados extends javax.swing.JInternalFrame {
         cmdSiguiente = new javax.swing.JButton();
         txtBuscar = new javax.swing.JTextField();
         lblBuscar = new javax.swing.JLabel();
+        cmdBuscar = new javax.swing.JButton();
         panCapturaEstados = new javax.swing.JTabbedPane();
         jpanEstado = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -79,22 +81,15 @@ public class frmEstados extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "Title 1", "Title 2"
+                "Title 1", "Title 2", "Title 3"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Long.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, true
+                java.lang.Long.class, java.lang.Long.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
             }
         });
         JTabEstados.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
@@ -113,6 +108,10 @@ public class frmEstados extends javax.swing.JInternalFrame {
             }
         });
         tabPaises.setViewportView(JTabEstados);
+        if (JTabEstados.getColumnModel().getColumnCount() > 0) {
+            JTabEstados.getColumnModel().getColumn(0).setPreferredWidth(10);
+            JTabEstados.getColumnModel().getColumn(1).setPreferredWidth(10);
+        }
 
         jlblNumReg.setText("Registros");
 
@@ -152,6 +151,13 @@ public class frmEstados extends javax.swing.JInternalFrame {
 
         lblBuscar.setText("Buscar");
 
+        cmdBuscar.setText("Buscar");
+        cmdBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBuscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -176,7 +182,9 @@ public class frmEstados extends javax.swing.JInternalFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(lblBuscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmdBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -194,7 +202,8 @@ public class frmEstados extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblBuscar))
+                    .addComponent(lblBuscar)
+                    .addComponent(cmdBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(68, 68, 68))
         );
 
@@ -388,13 +397,13 @@ public class frmEstados extends javax.swing.JInternalFrame {
         long lngEstado;
 
         if (fila > -1){
-            this.txtIdEstado.setText(String.valueOf(this.JTabEstados.getValueAt(fila, 0)));
+            this.txtIdEstado.setText(String.valueOf(this.JTabEstados.getValueAt(fila, 1)));
 
             //            SimpleDateFormat formato = new SimpleDateFormat("yyyy-MM-dd");
             //            Date Fecha = new Date();
             //            this.dteFechaNacimiento.setDate(Fecha);
 
-            estados.leerEstado(this.txtIdEstado.getText(),this.cboPaises.getSelectedItem().toString().substring(0, 4));
+            estados.leerEstado(this.txtIdEstado.getText(),String.valueOf(this.JTabEstados.getValueAt(fila, 0)));
 
             this.txtIdEstado.setText(String.valueOf(estados.lngIdEstado));
             this.txtNombreEstado.setText(estados.strEstado);
@@ -415,11 +424,16 @@ public class frmEstados extends javax.swing.JInternalFrame {
         if(1<Long.valueOf( this.txtPagina.getText())){
             lngValor=Long.valueOf( this.txtPagina.getText())-1;
             this.txtPagina.setText(String.valueOf(lngValor));
-            defineTablaEstados("",lngValor,Long.parseLong(this.cboPaises.getSelectedItem().toString().substring(0, 4).toString()));
+            defineTablaEstados(this.txtBuscar.getText(),lngValor,Long.parseLong(this.cboPaises.getSelectedItem().toString().substring(0, 4).toString()));
     }//GEN-LAST:event_cmdAtrasActionPerformed
     }
     private void cmdSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdSiguienteActionPerformed
-
+         long lngValor=0;
+        if(lngNumPaginas>Long.valueOf( this.txtPagina.getText())){
+            lngValor=Long.valueOf( this.txtPagina.getText())+1;
+            this.txtPagina.setText(String.valueOf(lngValor));
+            defineTablaEstados(this.txtBuscar.getText(),lngValor,Long.parseLong(this.cboPaises.getSelectedItem().toString().substring(0, 4).toString()));
+        }    
     }//GEN-LAST:event_cmdSiguienteActionPerformed
 
     private void txtBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBuscarActionPerformed
@@ -437,7 +451,9 @@ public class frmEstados extends javax.swing.JInternalFrame {
             String strRespuesta="";
 
             estados.strEstado=this.txtNombreEstado.getText();
-
+      
+            estados.StrPais=(this.cboPaises.getSelectedItem().toString().substring(0, 4).toString());
+                
             try {
                 estados.ingresarEstado();
                 defineTablaEstados("",1,Long.parseLong(this.cboPaises.getSelectedItem().toString().substring(0, 4).toString()));
@@ -452,12 +468,14 @@ public class frmEstados extends javax.swing.JInternalFrame {
         else{
             classEstados estados =new classEstados();
             estados.lngIdEstado=Long.valueOf(this.txtIdEstado.getText());
+            estados.StrPais=(this.cboPaises.getSelectedItem().toString().substring(0, 4).toString());
             estados.strEstado=this.txtNombreEstado.getText();
 
             try {
-                estados.actualizarEstado();
+                if (estados.actualizarEstado()==true){
                 this.defineTablaEstados(this.txtBuscar.getText(), Long.valueOf( this.txtPagina.getText()),Long.parseLong(this.cboPaises.getSelectedItem().toString().substring(0, 4).toString()));
                 JOptionPane.showInternalMessageDialog(rootPane,"Actualizado Correctamente");
+                }
             } catch (SQLException ex) {
                 Logger.getLogger(frmGruposUsuarios.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -472,9 +490,11 @@ public class frmEstados extends javax.swing.JInternalFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         classEstados estados = new classEstados();
         estados.lngIdEstado=Long.valueOf(this.txtIdEstado.getText());
+        estados.StrPais=(this.cboPaises.getSelectedItem().toString().substring(0, 4).toString());
         try {
             estados.eliminarEstado();
             defineTablaEstados("",1,1);
+            this.limpiar();
             JOptionPane.showInternalMessageDialog(rootPane,"Eliminado Correctamente");
         } catch (SQLException ex) {
             Logger.getLogger(frmGruposUsuarios.class.getName()).log(Level.SEVERE, null, ex);
@@ -506,7 +526,7 @@ public class frmEstados extends javax.swing.JInternalFrame {
         DefaultTableModel tablaEstados = new DefaultTableModel();
         
         //LE AGREGAMOS EL TITULO DE LAS COLUMNAS DE LA TABLA EN UN ARREGLO
-        String strTitulos[]={"ID ESTADO","NOMBRE"};
+        String strTitulos[]={"ID PAIS","ID ESTADO","NOMBRE"};
         
         //LE ASIGNAMOS LAS COLUMNAS AL MODELO CON LA CADENA DE ARRIBA
         tablaEstados.setColumnIdentifiers(strTitulos);
@@ -535,13 +555,14 @@ public class frmEstados extends javax.swing.JInternalFrame {
         this.JTabEstados.setModel(tablaEstados);
         
         //ASIGNAMOS LOS VALORES A LA PAGINACION
-        lngRegistros = estados.leerCuantos(this.txtBuscar.getText());
+        lngRegistros = estados.leerCuantos(this.txtBuscar.getText(),(this.cboPaises.getSelectedItem().toString().substring(0, 4).toString()));
         lngNumPaginas= (lngRegistros/ (Long.valueOf( this.txtNumReg.getText())))+1;
         this.jlblTotalPaginas.setText(" De " + ( lngNumPaginas));
         
          //TAMAÑO A LAS COLUMNAS
-        JTabEstados.getColumnModel().getColumn(0).setPreferredWidth(70);
-        JTabEstados.getColumnModel().getColumn(1).setPreferredWidth(300);
+        JTabEstados.getColumnModel().getColumn(0).setPreferredWidth(10);
+        JTabEstados.getColumnModel().getColumn(1).setPreferredWidth(10);
+        JTabEstados.getColumnModel().getColumn(2).setPreferredWidth(300);
         
     }
     
@@ -574,6 +595,10 @@ public class frmEstados extends javax.swing.JInternalFrame {
   
     }//GEN-LAST:event_cboPaisesActionPerformed
 
+    private void cmdBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBuscarActionPerformed
+        defineTablaEstados(this.txtBuscar.getText(),1,Long.valueOf(this.cboPaises.getSelectedItem().toString().substring(0, 4)));
+    }//GEN-LAST:event_cmdBuscarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -588,6 +613,7 @@ public class frmEstados extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnRegEstado;
     private javax.swing.JComboBox cboPaises;
     private javax.swing.JButton cmdAtras;
+    private javax.swing.JButton cmdBuscar;
     private javax.swing.JButton cmdSiguiente;
     private javax.swing.JLabel idEstado;
     private javax.swing.JPanel jPanel1;

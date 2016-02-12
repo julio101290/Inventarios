@@ -38,9 +38,9 @@ public class classEstados {
         String strConsulta;
         String datos[]=new String [5];
         DecimalFormat formato = new DecimalFormat("0000");
-        strConsulta="call PA_LeerEstado ("+strEstado
-                + ","+strPais+");";
-     
+        strConsulta="call PA_LeeEstado ("+strPais
+                + ","+strEstado+");";
+      
       
         try{
          
@@ -77,8 +77,9 @@ public class classEstados {
          
          while(res.next()){
               //System.out.println(res.getString("Nombres"));
-              datos[0]=res.getString("idEstado");
-              datos[1]=res.getString("Descripcion");
+              datos[0]=res.getString("idPais");
+              datos[1]=res.getString("idEstado");
+              datos[2]=res.getString("Descripcion");
              
               tablaEstadoes.addRow(datos);
          }
@@ -91,10 +92,11 @@ public class classEstados {
         
     }
     
-    public long leerCuantos(String strBusqueda){
+    public long leerCuantos(String strBusqueda,String strPais){
         String strConsulta;
         long cuantos = 0;
-        strConsulta="call PA_LeeCuantosEstados('" +strBusqueda +"');";
+        strConsulta="call PA_LeeCuantosEstados('" +strBusqueda +"'"
+                + ",'"+ strPais + "');";
       
         try{
          
@@ -124,10 +126,10 @@ public class classEstados {
          String strConsulta="";
          String strRespuesta="";
          
-         strConsulta=strConsulta +"call PA_EliminarEstado  ('"+this.lngIdEstado+"');";
+         strConsulta=strConsulta +"call PA_EliminaEstado   ('"+this.lngIdEstado+"','"+Long.valueOf(this.StrPais)+"');";
          ps= con.conectado().prepareStatement(strConsulta);
          
-         strRespuesta= herramientas.globales.strPreguntaSiNo("Desea eliminar el estado con ID " + this.strEstado);
+         strRespuesta= herramientas.globales.strPreguntaSiNo("Desea eliminar el estado con ID " + this.lngIdEstado);
          if (strRespuesta=="SI"){
             res = ps.executeQuery();
          }
@@ -141,8 +143,8 @@ public class classEstados {
          String strConsulta="";
          String strRespuesta="";
          
-         strConsulta=strConsulta +"call PA_ActualizaEstado  ("+this.lngIdEstado+",'"+ this.strEstado 
-    
+         strConsulta=strConsulta +"call PA_ActualizaEstado  ("+this.lngIdEstado+",'"+ this.StrPais 
+                 + "','" + this.strEstado
                  + "');";
       
         
@@ -151,10 +153,12 @@ public class classEstados {
          strRespuesta= herramientas.globales.strPreguntaSiNo("Desea actualizar el estado con ID " + this.lngIdEstado);
          if (strRespuesta=="SI"){
             res = ps.executeQuery();
+            return true;
          }
-         
-         System.out.println(strConsulta);
-         return true;
+         else{
+         return false;
+         }
+         //System.out.println(strConsulta);
     }
     
     
@@ -164,6 +168,8 @@ public class classEstados {
          String strRespuesta="";
          
          strConsulta=strConsulta +"call PA_InsertaEstado ('"+this.strEstado+"'"
+                 + ",'" + this.StrPais + "'"
+                 
                  + ");";
          ps= con.conectado().prepareStatement(strConsulta);
          
