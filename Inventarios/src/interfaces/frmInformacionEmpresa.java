@@ -5,12 +5,16 @@
  */
 package interfaces;
 
+import clases.classDatosEmpresa;
 import static com.sun.javafx.tk.Toolkit.getToolkit;
 import java.awt.Dialog;
 import java.awt.Image;
 import java.io.File;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import herramientas.globales;
+import static herramientas.globales.llenarComboGlobal;
+import java.io.FileInputStream;
 
 /**
  *
@@ -21,8 +25,10 @@ public class frmInformacionEmpresa extends javax.swing.JInternalFrame{
     /**
      * Creates new form frmInformacionEmpresa
      */
+    Image logo;
     public frmInformacionEmpresa() {
         initComponents();
+        llenarComboGlobal(this.cboPais,"select idPais,Descripcion from Paises");
     }
 
     /**
@@ -44,19 +50,17 @@ public class frmInformacionEmpresa extends javax.swing.JInternalFrame{
         lblCiudad = new javax.swing.JLabel();
         lblEstado = new javax.swing.JLabel();
         lblPais = new javax.swing.JLabel();
-        txtNombre1 = new javax.swing.JTextField();
-        txtNombre2 = new javax.swing.JTextField();
-        txtNombre3 = new javax.swing.JTextField();
-        txtNombre4 = new javax.swing.JTextField();
-        txtNombre5 = new javax.swing.JTextField();
+        txtRazonSocial = new javax.swing.JTextField();
+        txtRFC = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
+        txtCiudad = new javax.swing.JTextField();
+        txtDireccion = new javax.swing.JTextField();
         lblLogo = new javax.swing.JLabel();
         lblImagen = new javax.swing.JLabel();
         cboEstado = new javax.swing.JComboBox();
         cboPais = new javax.swing.JComboBox();
         txtImagen = new javax.swing.JTextField();
         btnSeleccionar = new javax.swing.JButton();
-        btnAgregarEstado = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
 
@@ -82,23 +86,19 @@ public class frmInformacionEmpresa extends javax.swing.JInternalFrame{
 
         lblLogo.setText("Logo:");
 
-        cboEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboEstado.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
 
-        cboPais.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cboPais.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "" }));
+        cboPais.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboPaisItemStateChanged(evt);
+            }
+        });
 
         btnSeleccionar.setText("Seleccionar");
         btnSeleccionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSeleccionarActionPerformed(evt);
-            }
-        });
-
-        btnAgregarEstado.setText("Agregar");
-
-        jButton2.setText("Agregar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
             }
         });
 
@@ -123,25 +123,20 @@ public class frmInformacionEmpresa extends javax.swing.JInternalFrame{
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombre)
-                            .addComponent(txtNombre1, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtNombre2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtNombre3, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtNombre4, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtNombre5, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtRazonSocial, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtRFC, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtTelefono, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtCiudad, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtDireccion, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(txtImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(btnSeleccionar, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(cboEstado, javax.swing.GroupLayout.Alignment.LEADING, 0, 221, Short.MAX_VALUE)
-                                            .addComponent(cboPais, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                        .addGap(18, 18, 18)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnAgregarEstado)
-                                            .addComponent(jButton2))))
+                                        .addComponent(btnSeleccionar, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(cboEstado, javax.swing.GroupLayout.Alignment.LEADING, 0, 221, Short.MAX_VALUE)
+                                        .addComponent(cboPais, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(67, 67, 67)
@@ -160,33 +155,31 @@ public class frmInformacionEmpresa extends javax.swing.JInternalFrame{
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblRazonSocial)
-                            .addComponent(txtNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtRazonSocial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(lblRFC))
-                    .addComponent(txtNombre2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtRFC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblTelefono)
-                    .addComponent(txtNombre3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTelefono, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblDireccion)
-                    .addComponent(txtNombre5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblCiudad)
-                    .addComponent(txtNombre4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtCiudad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblPais)
-                    .addComponent(cboPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2))
+                    .addComponent(cboPais, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblEstado)
-                    .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAgregarEstado))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                    .addComponent(cboEstado, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblLogo)
                     .addComponent(txtImagen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -197,6 +190,11 @@ public class frmInformacionEmpresa extends javax.swing.JInternalFrame{
         );
 
         btnGuardar.setText("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnSalir.setText("Salir");
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -246,7 +244,7 @@ public class frmInformacionEmpresa extends javax.swing.JInternalFrame{
            
             this.txtImagen.setText(String.valueOf(file));
             
-            Image logo = getToolkit().getImage(this.txtImagen.getText());
+            logo = getToolkit().getImage(this.txtImagen.getText());
             
             
             logo=logo.getScaledInstance(250,Math.round(250*(250/logo.getWidth(null))), Image.SCALE_DEFAULT);
@@ -256,28 +254,43 @@ public class frmInformacionEmpresa extends javax.swing.JInternalFrame{
         }
     }//GEN-LAST:event_btnSeleccionarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-         frmPaises paises = new frmPaises();
-        
- 
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void cboPaisItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboPaisItemStateChanged
+                                                 
+          if (evt.getSource()==cboPais) {
+            long lngPais;
+            
+            
+            this.cboEstado.removeAllItems();
+            llenarComboGlobal(this.cboEstado,"select idEstado,Descripcion from Estados"
+                    + " where idPais="+Long.valueOf(this.cboPais.getSelectedItem().toString().substring(0, 4)));
+            //String strPais=(String)this.cboPaises.getSelectedItem();
+            //JOptionPane.showInternalMessageDialog(rootPane,strPais);
+            //defineTablaEstados("",1,Long.valueOf(this.cboPaises.getSelectedItem().toString().substring(0, 4)));
+            
+        }
+    }//GEN-LAST:event_cboPaisItemStateChanged
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        classDatosEmpresa empresa = new classDatosEmpresa();
+        empresa.Direccion=this.txtDireccion.getText();
+        empresa.Estado=this.cboEstado.getToolTipText();
+        empresa.fLogo=this.logo.flush();
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
      */
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAgregarEstado;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JButton btnSeleccionar;
     private javax.swing.JComboBox cboEstado;
     private javax.swing.JComboBox cboPais;
-    private javax.swing.JButton jButton2;
     private javax.swing.JPanel jPanel1;
     javax.swing.JLabel lblCiudad;
     javax.swing.JLabel lblDireccion;
@@ -289,12 +302,12 @@ public class frmInformacionEmpresa extends javax.swing.JInternalFrame{
     javax.swing.JLabel lblRFC;
     javax.swing.JLabel lblRazonSocial;
     javax.swing.JLabel lblTelefono;
+    private javax.swing.JTextField txtCiudad;
+    private javax.swing.JTextField txtDireccion;
     private javax.swing.JTextField txtImagen;
     private javax.swing.JTextField txtNombre;
-    private javax.swing.JTextField txtNombre1;
-    private javax.swing.JTextField txtNombre2;
-    private javax.swing.JTextField txtNombre3;
-    private javax.swing.JTextField txtNombre4;
-    private javax.swing.JTextField txtNombre5;
+    private javax.swing.JTextField txtRFC;
+    private javax.swing.JTextField txtRazonSocial;
+    private javax.swing.JTextField txtTelefono;
     // End of variables declaration//GEN-END:variables
 }

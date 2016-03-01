@@ -450,6 +450,10 @@ public class frmEstados extends javax.swing.JInternalFrame {
             classEstados estados = new classEstados();
             String strRespuesta="";
 
+            if (this.cboPaises.getSelectedItem().toString()==""){
+                JOptionPane.showInternalMessageDialog(rootPane,"Es necesario elegir un país");
+                return;
+            }
             estados.strEstado=this.txtNombreEstado.getText();
       
             estados.StrPais=(this.cboPaises.getSelectedItem().toString().substring(0, 4).toString());
