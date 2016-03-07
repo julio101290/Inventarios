@@ -15,6 +15,10 @@ import javax.swing.JFileChooser;
 import herramientas.globales;
 import static herramientas.globales.llenarComboGlobal;
 import java.io.FileInputStream;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -29,6 +33,14 @@ public class frmInformacionEmpresa extends javax.swing.JInternalFrame{
     public frmInformacionEmpresa() {
         initComponents();
         llenarComboGlobal(this.cboPais,"select idPais,Descripcion from Paises");
+        this.txtCiudad.setText(globales.gstrCiudad);
+        this.txtDireccion.setText(globales.gstrDireccion);
+        this.cboEstado.setToolTipText(globales.gstrEstado);
+        this.txtNombre.setText(globales.gstrNombre);
+        this.cboPais.setToolTipText(globales.gstrPais);
+        this.txtRFC.setText(globales.gstrRFC);
+        this.txtRazonSocial.setText(globales.gstrRazonSocial);
+        this.txtTelefono.setText(globales.gstrTelefono);
     }
 
     /**
@@ -276,9 +288,32 @@ public class frmInformacionEmpresa extends javax.swing.JInternalFrame{
 
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         classDatosEmpresa empresa = new classDatosEmpresa();
+        try {
+            empresa.EliminarEmpresa();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR AL ELIMINAR ");
+        }
+        
         empresa.Direccion=this.txtDireccion.getText();
-        empresa.Estado=this.cboEstado.getToolTipText();
-        empresa.fLogo=this.logo.flush();
+        empresa.Estado=this.cboEstado.getSelectedItem().toString();
+        empresa.strCiudad=this.txtCiudad.getText();
+        empresa.Pais=this.cboPais.getSelectedItem().toString();
+        empresa.Nombre=this.txtNombre.getText();
+        empresa.RFC=this.txtRFC.getText();
+        empresa.Telefono=this.txtTelefono.getText();
+        empresa.RazonSocial=this.txtRazonSocial.getText();
+        
+      
+        try {
+            if (empresa.ingresarDatosEmpresa()==true){
+                JOptionPane.showMessageDialog(null, "INFORMACION GUARDADA ");
+                this.dispose();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(frmInformacionEmpresa.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "ERROR AL GUARDAR ");
+        }
+        
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**

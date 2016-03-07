@@ -5,6 +5,7 @@
  */
 package interfaces;
 
+import clases.classDatosEmpresa;
 import clases.classUsuario;
 import herramientas.conexion;
 import herramientas.globales;
@@ -173,6 +174,21 @@ public class frmLogueo extends javax.swing.JFrame {
                 
                 globales.lngIDGrupo=Long.valueOf(datosUsuario[5]);
                 globales.obtenerDerechosGrupo();
+                
+                //DATOS DE LA EMPRESA
+                classDatosEmpresa datosEmpresa = new classDatosEmpresa();
+                datosEmpresa.leerEmpresa();
+                
+                globales.gstrCiudad=datosEmpresa.strCiudad;
+                globales.gstrDireccion=datosEmpresa.Direccion;
+                globales.gstrEstado=datosEmpresa.Estado;
+                globales.gstrNombre=datosEmpresa.Nombre;
+                globales.gstrPais=datosEmpresa.Pais;
+                globales.gstrRFC=datosEmpresa.RFC;
+                globales.gstrRazonSocial=datosEmpresa.RazonSocial;
+                globales.gstrTelefono=datosEmpresa.Telefono;
+                
+                
                 principal.ejecutarDerecho();
                 principal.setVisible(true);
             }

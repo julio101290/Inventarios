@@ -6,6 +6,8 @@
 package herramientas;
 
 import clases.classGruposUsuarios;
+import java.io.File;
+import java.io.FileInputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,6 +28,18 @@ import javax.swing.JOptionPane;
     public static boolean  blnAccesoClientes;
     public static boolean  blnAccesoArticulos;
     public static boolean  blnAccesoInventarios;
+    
+    //DATOS EMPRESA
+    public static String gstrCiudad;
+    public static String gstrDireccion;
+    public static String gstrEstado;
+    public static File Logo;
+    public static FileInputStream fLogo;
+    public static String gstrNombre;
+    public static String gstrPais;
+    public static String gstrRazonSocial;
+    public static String gstrRFC;
+    public static String gstrTelefono;
     
     private static conexion con;
     private static PreparedStatement ps;

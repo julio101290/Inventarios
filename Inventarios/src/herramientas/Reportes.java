@@ -60,7 +60,7 @@ public class Reportes {
                  JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
                  JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, con.conectado());
                  JasperViewer jviewer = new JasperViewer(jasperPrint,false);
-                 jviewer.setTitle("Sistema de gestión de Cartera");
+                 jviewer.setTitle("CATALOGO DE CLIENTES");
                  jviewer.setVisible(true);
                    con.desconectar();
                 }
