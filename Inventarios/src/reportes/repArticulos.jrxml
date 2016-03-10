@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="d9e7c383-492f-4d6f-8796-73c873ebcea6">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[CALL `PA_LeeArticulos`(0, 1000, '');]]>
+	</queryString>
+	<field name="idArticulo" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Descripcion" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="Tipo" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IEPS" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="IVA" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PrecioCosto" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="PrecioVenta" class="java.math.BigDecimal">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="246" y="0" width="309" height="20" uuid="4b81abca-f715-454c-a5ea-30a2ecf1399e"/>
+				<textElement>
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REPORTE GENERAL DE ARTICULOS]]></text>
+			</staticText>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="304" y="20" width="197" height="20" uuid="f13f8958-4ea1-4b3f-943e-6decf506b6b5"/>
+				<textElement>
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="31" splitType="Stretch">
+			<staticText>
+				<reportElement x="386" y="6" width="39" height="20" uuid="8007eddd-69c0-4596-ae61-a9a2ad38f255"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[IVA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="89" y="7" width="100" height="20" uuid="f32306ec-90a9-496e-9b3a-314cf63777f9"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[DESCRIPCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="304" y="7" width="51" height="20" uuid="3cb36aeb-b67e-4e37-a0af-88ead8b58500"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[IEPS]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="9" y="7" width="55" height="20" uuid="96dde03a-1ff8-480d-b82d-401b91ac17f9"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="189" y="6" width="100" height="20" uuid="66b93769-fd83-472c-8a74-b6e529c63560"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[TIPO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="455" y="7" width="80" height="20" uuid="a4c410cf-1842-453a-aca5-b36d1db61d32"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[COSTO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="565" y="6" width="132" height="20" uuid="a1f772d4-40e4-45c6-a03f-f471ac2ce388"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[PRECIO VENTA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement x="9" y="1" width="55" height="20" uuid="14ad3569-48ae-4610-8879-1f3d73f223f0"/>
+				<textFieldExpression><![CDATA[$F{idArticulo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="73" y="1" width="100" height="20" uuid="40ffa1df-d90e-44bc-8e80-aa51bd6a92de"/>
+				<textFieldExpression><![CDATA[$F{Descripcion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="189" y="1" width="100" height="20" uuid="7ee5e393-615d-423e-9cf9-2d8eb1c27196"/>
+				<textFieldExpression><![CDATA[$F{Tipo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="304" y="1" width="51" height="20" uuid="68b50e86-0610-4998-bb55-645b590c2c03"/>
+				<textFieldExpression><![CDATA[$F{IVA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="386" y="1" width="39" height="20" uuid="2b825d39-679f-4874-b3a5-508f86d3bf7f"/>
+				<textFieldExpression><![CDATA[$F{IEPS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="455" y="1" width="80" height="20" uuid="a8459dc0-47ff-4d58-ac63-1462d097bf69"/>
+				<textFieldExpression><![CDATA[$F{PrecioCosto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="565" y="1" width="132" height="20" uuid="2691c0c5-e24a-47d9-951e-30d8c681b9fc"/>
+				<textFieldExpression><![CDATA[$F{PrecioVenta}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField>
+				<reportElement x="455" y="0" width="100" height="20" uuid="c92d35a8-5cbc-45d1-8212-100463015d62"/>
+				<textFieldExpression><![CDATA["PAGINA " + $V{PAGE_NUMBER} + " DE " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

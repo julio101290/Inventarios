@@ -48,7 +48,11 @@ public class classPaises {
          while(res.next()){
               this.lngIdPais=Long.valueOf(res.getString("idPais"));
               this.strPais=res.getString("Descripcion");
-
+              this.lngIdPais=Long.valueOf(res.getString("idPais"));
+              this.strPais=res.getString("Descripcion");
+              this.lngIdPais=Long.valueOf(res.getString("idPais"));
+              this.strPais=res.getString("Descripcion");
+              this.lngIdPais=Long.valueOf(res.getString("idPais"));
                       
               res.close();
               
