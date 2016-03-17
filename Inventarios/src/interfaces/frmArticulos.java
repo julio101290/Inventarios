@@ -69,6 +69,7 @@ public class frmArticulos extends javax.swing.JInternalFrame {
         cmdSiguiente = new javax.swing.JButton();
         txtBuscar = new javax.swing.JTextField();
         lblBuscar = new javax.swing.JLabel();
+        cmdBuscar = new javax.swing.JButton();
         PanBotones2 = new javax.swing.JPanel();
         btnRegArticulo = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
@@ -271,6 +272,13 @@ public class frmArticulos extends javax.swing.JInternalFrame {
 
         lblBuscar.setText("Buscar");
 
+        cmdBuscar.setText("Buscar");
+        cmdBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBuscarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -295,7 +303,9 @@ public class frmArticulos extends javax.swing.JInternalFrame {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(lblBuscar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cmdBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
@@ -313,7 +323,8 @@ public class frmArticulos extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblBuscar))
+                    .addComponent(lblBuscar)
+                    .addComponent(cmdBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(68, 68, 68))
         );
 
@@ -610,6 +621,10 @@ public void defineTablaArticulos(String strBusqueda,long DesdeHoja){
         this.dispose();
     }//GEN-LAST:event_salirclijButtonActionPerformed
 
+    private void cmdBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBuscarActionPerformed
+        defineTablaArticulos(this.txtBuscar.getText(),Long.valueOf(this.txtPagina.getText()));
+    }//GEN-LAST:event_cmdBuscarActionPerformed
+
     public void limpiar()
     {
         
@@ -638,6 +653,7 @@ public void defineTablaArticulos(String strBusqueda,long DesdeHoja){
     private javax.swing.JButton btnRegArticulo;
     private javax.swing.JComboBox cboTipo;
     private javax.swing.JButton cmdAtras;
+    private javax.swing.JButton cmdBuscar;
     private javax.swing.JButton cmdSiguiente;
     private javax.swing.JPanel costos;
     private javax.swing.JLabel idProducto;

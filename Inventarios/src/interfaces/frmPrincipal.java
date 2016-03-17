@@ -266,7 +266,9 @@ control_existencias ctrl = new control_existencias();
     }//GEN-LAST:event_miDatosEmpresaActionPerformed
 
     private void menuBodegasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuBodegasActionPerformed
-        // TODO add your handling code here:
+        frmBodegas bodega= new frmBodegas();
+        jDesktopPane1.add(bodega);
+        bodega.show();   
     }//GEN-LAST:event_menuBodegasActionPerformed
 
     private void menuPaisesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPaisesActionPerformed

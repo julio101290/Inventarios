@@ -85,7 +85,7 @@ public class classArticulos {
          while(res.next()){
               //System.out.println(res.getString("Nombres"));
               
-              datos[0]=res.getString("idArticulo");
+              datos[0]=res.getString("idBodega");
               datos[1]=res.getString("Descripcion");
               datos[2]=res.getString("Tipo");
               datos[3]=res.getString("IEPS");
@@ -143,7 +143,7 @@ public class classArticulos {
 
        ps= con.conectado().prepareStatement(strConsulta);
          
-         strRespuesta= herramientas.globales.strPreguntaSiNo("Desea actualizar el pais con ID " + this.lngIdArticulo);
+         strRespuesta= herramientas.globales.strPreguntaSiNo("Desea actualizar el articulo " + this.lngIdArticulo);
          if (strRespuesta=="SI"){
             res = ps.executeQuery();
          }
@@ -152,7 +152,7 @@ public class classArticulos {
          return true;
     }
      
-       public boolean eliminarArticulo() throws SQLException
+    public boolean eliminarArticulo() throws SQLException
     {               
          String strConsulta="";
          String strRespuesta="";
