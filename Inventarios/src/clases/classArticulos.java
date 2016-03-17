@@ -85,7 +85,7 @@ public class classArticulos {
          while(res.next()){
               //System.out.println(res.getString("Nombres"));
               
-              datos[0]=res.getString("idBodega");
+              datos[0]=res.getString("idArticulo");
               datos[1]=res.getString("Descripcion");
               datos[2]=res.getString("Tipo");
               datos[3]=res.getString("IEPS");
