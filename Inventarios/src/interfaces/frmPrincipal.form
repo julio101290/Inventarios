@@ -257,6 +257,9 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="Flujos de inventario"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MenuFlujoActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuEntrada">
               <Properties>

@@ -197,6 +197,11 @@ control_existencias ctrl = new control_existencias();
         MenuFlujo.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         MenuFlujo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/flujos.png"))); // NOI18N
         MenuFlujo.setText("Flujos de inventario");
+        MenuFlujo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MenuFlujoActionPerformed(evt);
+            }
+        });
         menuInventario.add(MenuFlujo);
 
         menuEntrada.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_I, java.awt.event.InputEvent.CTRL_MASK));
@@ -282,6 +287,12 @@ control_existencias ctrl = new control_existencias();
         jDesktopPane1.add(estados);
         estados.setVisible(true);
     }//GEN-LAST:event_menuEstadosActionPerformed
+
+    private void MenuFlujoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuFlujoActionPerformed
+        frmTipoFlujo flujo = new frmTipoFlujo();
+        jDesktopPane1.add(flujo);
+        flujo.setVisible(true);
+    }//GEN-LAST:event_MenuFlujoActionPerformed
 public void ejecutarDerecho(){
     jMenuItem3.setVisible(globales.blnAccesoArticulos);
     jMenuItem4.setVisible(globales.blnAccesoClientes);
