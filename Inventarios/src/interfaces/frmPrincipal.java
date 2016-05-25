@@ -209,6 +209,11 @@ control_existencias ctrl = new control_existencias();
         menuEntrada.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/entrada.png"))); // NOI18N
         menuEntrada.setText("Dar entrada o Salida");
         menuEntrada.setActionCommand("");
+        menuEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuEntradaActionPerformed(evt);
+            }
+        });
         menuInventario.add(menuEntrada);
 
         jMenuBar1.add(menuInventario);
@@ -293,6 +298,12 @@ control_existencias ctrl = new control_existencias();
         jDesktopPane1.add(flujo);
         flujo.setVisible(true);
     }//GEN-LAST:event_MenuFlujoActionPerformed
+
+    private void menuEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuEntradaActionPerformed
+        frmMovimientos movimiento = new frmMovimientos();
+        jDesktopPane1.add(movimiento);
+        movimiento.setVisible(true);
+    }//GEN-LAST:event_menuEntradaActionPerformed
 public void ejecutarDerecho(){
     jMenuItem3.setVisible(globales.blnAccesoArticulos);
     jMenuItem4.setVisible(globales.blnAccesoClientes);
