@@ -6,7 +6,7 @@
 package interfaces;
 
 import clases.classDatosEmpresa;
-import static com.sun.javafx.tk.Toolkit.getToolkit;
+//import static com.sun.javafx.tk.Toolkit.getToolkit;
 import java.awt.Dialog;
 import java.awt.Image;
 import java.io.File;

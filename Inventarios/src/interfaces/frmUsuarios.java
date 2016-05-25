@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.SingleSelectionModel;
 import javax.swing.table.DefaultTableModel;
-import static jdk.nashorn.internal.objects.NativeString.trim;
+//import static jdk.nashorn.internal.objects.NativeString.trim;
 import  herramientas.globales.*;
 import java.awt.Frame;
 import java.io.File;
