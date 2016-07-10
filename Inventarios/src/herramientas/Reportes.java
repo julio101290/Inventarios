@@ -6,6 +6,7 @@
 package herramientas;
 
 import java.io.File;
+import static herramientas.globales.*;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -17,6 +18,8 @@ import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.util.JRLoader;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
+import java.util.Map;
+import java.util.HashMap;
 
 /**
  *
@@ -30,6 +33,13 @@ public class Reportes {
             {
                 conexion con;
                 con = new conexion();
+                
+                //AGREGA LOS PARAMETROS BASICOS DE LA EMREPSA
+                Map mpParametros = new HashMap();
+                mpParametros.put("strNombre", gstrRazonSocial);
+                mpParametros.put("strRFC", gstrRFC);
+                mpParametros.put("strDireccion", gstrDireccion);
+                
                 try
                 {  
 
@@ -58,9 +68,9 @@ public class Reportes {
                 jasperDesign.setQuery(newQuery);
                
                  JasperReport jasperReport = JasperCompileManager.compileReport(jasperDesign);
-                 JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, con.conectado());
+                 JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, mpParametros, con.conectado());
                  JasperViewer jviewer = new JasperViewer(jasperPrint,false);
-                 jviewer.setTitle("CATALOGO");
+                 jviewer.setTitle(strReporte);
                  jviewer.setVisible(true);
                    con.desconectar();
                 }

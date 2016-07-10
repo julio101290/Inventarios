@@ -30,9 +30,13 @@ public class frmInformacionEmpresa extends javax.swing.JInternalFrame{
      * Creates new form frmInformacionEmpresa
      */
     Image logo;
+    String strInicio;
+    
     public frmInformacionEmpresa() {
         initComponents();
-        llenarComboGlobal(this.cboPais,"select idPais,Descripcion from Paises");
+        String strQuery;
+        strQuery="select idPais,Descripcion from Paises";
+    
         this.txtCiudad.setText(globales.gstrCiudad);
         this.txtDireccion.setText(globales.gstrDireccion);
         this.cboEstado.setToolTipText(globales.gstrEstado);
@@ -41,6 +45,9 @@ public class frmInformacionEmpresa extends javax.swing.JInternalFrame{
         this.txtRFC.setText(globales.gstrRFC);
         this.txtRazonSocial.setText(globales.gstrRazonSocial);
         this.txtTelefono.setText(globales.gstrTelefono);
+        strInicio="S";
+        llenarComboGlobal(this.cboPais,strQuery);
+        strInicio="N";
     }
 
     /**
@@ -273,16 +280,18 @@ public class frmInformacionEmpresa extends javax.swing.JInternalFrame{
     private void cboPaisItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboPaisItemStateChanged
                                                  
           if (evt.getSource()==cboPais) {
-            long lngPais;
+            String strPais="0";
             
-            
-            this.cboEstado.removeAllItems();
-            llenarComboGlobal(this.cboEstado,"select idEstado,Descripcion from Estados"
-                    + " where idPais="+Long.valueOf(this.cboPais.getSelectedItem().toString().substring(0, 4)));
-            //String strPais=(String)this.cboPaises.getSelectedItem();
-            //JOptionPane.showInternalMessageDialog(rootPane,strPais);
-            //defineTablaEstados("",1,Long.valueOf(this.cboPaises.getSelectedItem().toString().substring(0, 4)));
-            
+            try{
+                if(strInicio=="N"){
+                    strPais=(this.cboPais.getSelectedItem().toString().substring(0, 4));
+                    llenarComboGlobal(this.cboEstado,"select idEstado,Descripcion from Estados"
+                        + " where idPais="+strPais);
+                }
+            }
+            catch(Exception e){
+                strPais="0";
+            }  
         }
     }//GEN-LAST:event_cboPaisItemStateChanged
 

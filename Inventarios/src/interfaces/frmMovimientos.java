@@ -5,6 +5,9 @@
  */
 package interfaces;
 
+import clases.classMovimientosInventario;
+import static herramientas.globales.llenarComboGlobal;
+
 /**
  *
  * @author julio
@@ -16,6 +19,19 @@ public class frmMovimientos extends javax.swing.JInternalFrame {
      */
     public frmMovimientos() {
         initComponents();
+        String strQuery;
+        
+        this.tab.setEnabledAt(1, false);
+        
+        //LLENA LOS TIPOS DE FLUJO
+        strQuery="SELECT idTipoFlujo,Descripcion from TiposFlujos where EntradaSalida='" + this.cboTipo.getSelectedItem().toString() +"'";
+        llenarComboGlobal(this.cbotTipoFlujo1,strQuery);
+        
+        //LLENA LOS ALMACENES
+        strQuery="SELECT idBodega,Descripcion from Bodegas";
+        llenarComboGlobal(this.cboBodega,strQuery);
+        
+        blnTraeUltimoFolio();
     }
 
     /**
@@ -32,8 +48,6 @@ public class frmMovimientos extends javax.swing.JInternalFrame {
         panLlave = new javax.swing.JPanel();
         lblEntradaSalida = new javax.swing.JLabel();
         cboTipo = new javax.swing.JComboBox();
-        dteFechaNacimiento = new com.toedter.calendar.JDateChooser();
-        lblDia = new javax.swing.JLabel();
         lblTipoFlujo = new javax.swing.JLabel();
         cboBodega = new javax.swing.JComboBox();
         lblFolio = new javax.swing.JLabel();
@@ -48,6 +62,11 @@ public class frmMovimientos extends javax.swing.JInternalFrame {
         lblObservacion = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
+        btnGuardar = new javax.swing.JButton();
+        dteFechaNacimiento = new com.toedter.calendar.JDateChooser();
+        lblDia = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        salir1 = new javax.swing.JButton();
         panProductos = new javax.swing.JPanel();
         tabPaises = new javax.swing.JScrollPane();
         JTabTipoFlujo = new javax.swing.JTable();
@@ -63,16 +82,21 @@ public class frmMovimientos extends javax.swing.JInternalFrame {
         lblImporteTotal = new javax.swing.JLabel();
         txtPrecio1 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         lblEntradaSalida.setText("Entrada/Salida");
 
         cboTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Entrada", "Salida" }));
-
-        dteFechaNacimiento.setToolTipText("");
-        dteFechaNacimiento.setDateFormatString("yyyy-MM-dd");
-
-        lblDia.setText("Fecha:");
+        cboTipo.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cboTipoItemStateChanged(evt);
+            }
+        });
+        cboTipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cboTipoActionPerformed(evt);
+            }
+        });
 
         lblTipoFlujo.setText("Tipo Flujo:");
 
@@ -86,23 +110,25 @@ public class frmMovimientos extends javax.swing.JInternalFrame {
 
         lblBodega.setText("Bodega:");
 
+        cbotTipoFlujo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbotTipoFlujo1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panLlaveLayout = new javax.swing.GroupLayout(panLlave);
         panLlave.setLayout(panLlaveLayout);
         panLlaveLayout.setHorizontalGroup(
             panLlaveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panLlaveLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblDia)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(dteFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(38, 38, 38)
                 .addComponent(lblEntradaSalida)
                 .addGap(18, 18, 18)
-                .addComponent(cboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(lblTipoFlujo)
                 .addGap(18, 18, 18)
-                .addComponent(cbotTipoFlujo1, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cbotTipoFlujo1, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(lblBodega)
                 .addGap(18, 18, 18)
@@ -111,25 +137,23 @@ public class frmMovimientos extends javax.swing.JInternalFrame {
                 .addComponent(lblFolio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtFolio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         panLlaveLayout.setVerticalGroup(
             panLlaveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panLlaveLayout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(panLlaveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblDia)
-                    .addComponent(dteFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(panLlaveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panLlaveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cboBodega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblBodega))
                     .addGroup(panLlaveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(lblEntradaSalida)
                         .addComponent(cboTipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(lblTipoFlujo)
                         .addComponent(txtFolio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cbotTipoFlujo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblFolio)
-                        .addGroup(panLlaveLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cboBodega, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblBodega))))
+                        .addComponent(lblFolio)))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -145,6 +169,27 @@ public class frmMovimientos extends javax.swing.JInternalFrame {
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
+        btnGuardar.setText("Guardar");
+        btnGuardar.setToolTipText("");
+        btnGuardar.setActionCommand("Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
+
+        dteFechaNacimiento.setToolTipText("");
+        dteFechaNacimiento.setDateFormatString("yyyy-MM-dd");
+
+        lblDia.setText("Fecha:");
+
+        salir1.setText("Salir");
+        salir1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salir1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panGeneralesLayout = new javax.swing.GroupLayout(panGenerales);
         panGenerales.setLayout(panGeneralesLayout);
         panGeneralesLayout.setHorizontalGroup(
@@ -153,26 +198,49 @@ public class frmMovimientos extends javax.swing.JInternalFrame {
                 .addComponent(panLlave, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(panGeneralesLayout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addGroup(panGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblObservacion)
-                    .addComponent(lblFactura)
-                    .addComponent(lblClienteProveedor))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(panGeneralesLayout.createSequentialGroup()
-                        .addComponent(txtNumCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblNomCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1))
+                .addGap(86, 86, 86)
+                .addComponent(lblDia)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(dteFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panGeneralesLayout.createSequentialGroup()
+                .addGroup(panGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panGeneralesLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(23, 23, 23)
+                        .addComponent(salir1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panGeneralesLayout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(panGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblObservacion)
+                            .addComponent(lblFactura)
+                            .addComponent(lblClienteProveedor))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(panGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(panGeneralesLayout.createSequentialGroup()
+                                .addGroup(panGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(panGeneralesLayout.createSequentialGroup()
+                                        .addComponent(txtNumCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblNomCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jScrollPane1))))
+                .addGap(38, 38, 38))
         );
         panGeneralesLayout.setVerticalGroup(
             panGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panGeneralesLayout.createSequentialGroup()
                 .addComponent(panLlave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(11, 11, 11)
+                .addGroup(panGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblDia)
+                    .addComponent(dteFechaNacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblClienteProveedor)
                     .addComponent(txtNumCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -185,7 +253,11 @@ public class frmMovimientos extends javax.swing.JInternalFrame {
                 .addGroup(panGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblObservacion)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 194, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGroup(panGeneralesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(salir1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         tab.addTab("DATOS GENERALES", panGenerales);
@@ -215,12 +287,12 @@ public class frmMovimientos extends javax.swing.JInternalFrame {
         });
         JTabTipoFlujo.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         JTabTipoFlujo.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 JTabTipoFlujoAncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         JTabTipoFlujo.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -300,7 +372,7 @@ public class frmMovimientos extends javax.swing.JInternalFrame {
                 .addComponent(tabPaises, javax.swing.GroupLayout.PREFERRED_SIZE, 474, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
         panProductosLayout.setVerticalGroup(
             panProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,7 +381,7 @@ public class frmMovimientos extends javax.swing.JInternalFrame {
                 .addGroup(panProductosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(tabPaises, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(133, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         tab.addTab("PRODUCTOS", panProductos);
@@ -340,17 +412,58 @@ public class frmMovimientos extends javax.swing.JInternalFrame {
        
     }//GEN-LAST:event_JTabTipoFlujoMouseClicked
 
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        
+    }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void cboTipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboTipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cboTipoActionPerformed
+
+    private void cboTipoItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cboTipoItemStateChanged
+        if (evt.getSource()==cboTipo) {
+            String strQuery;
+            strQuery="SELECT idTipoFlujo,Descripcion from TiposFlujos where EntradaSalida='" + this.cboTipo.getSelectedItem().toString() +"'";
+            
+            llenarComboGlobal(this.cbotTipoFlujo1,strQuery);
+            
+        }
+    }//GEN-LAST:event_cboTipoItemStateChanged
+
+    private void salir1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salir1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_salir1ActionPerformed
+
+    private void cbotTipoFlujo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbotTipoFlujo1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbotTipoFlujo1ActionPerformed
+
   
-   
+   public void blnTraeUltimoFolio(){
+       String strTipoMovimiento;
+       String strTipoFlujo;
+       String strBodega;
+       
+       strTipoMovimiento=this.cboTipo.getSelectedItem().toString();
+       strTipoFlujo=this.cbotTipoFlujo1.getSelectedItem().toString().substring(0, 4).toString();
+       strBodega=this.cboBodega.getSelectedItem().toString().substring(0, 4).toString();
+       
+       classMovimientosInventario Movimientos = new classMovimientosInventario();
+       
+       this.txtFolio.setText( String.valueOf(Movimientos.lngUltimoFolio(strTipoMovimiento, strTipoFlujo, strBodega)));
+       
+   }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable JTabTipoFlujo;
+    private javax.swing.JButton btnGuardar;
     private javax.swing.JComboBox cboBodega;
     private javax.swing.JComboBox cboTipo;
     private javax.swing.JComboBox cbotTipoFlujo1;
     private com.toedter.calendar.JDateChooser dteFechaNacimiento;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblBodega;
     private javax.swing.JLabel lblCant;
@@ -369,6 +482,7 @@ public class frmMovimientos extends javax.swing.JInternalFrame {
     private javax.swing.JPanel panGenerales;
     private javax.swing.JPanel panLlave;
     private javax.swing.JPanel panProductos;
+    private javax.swing.JButton salir1;
     private javax.swing.JTabbedPane tab;
     private javax.swing.JScrollPane tabPaises;
     private javax.swing.JTextField txtCantidad;

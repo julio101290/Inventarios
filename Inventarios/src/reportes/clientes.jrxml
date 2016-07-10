@@ -3,6 +3,11 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="strNombre" class="java.lang.String">
+		<defaultValueExpression><![CDATA[NombreEmpresa]]></defaultValueExpression>
+	</parameter>
+	<parameter name="strRFC" class="java.lang.String"/>
+	<parameter name="strDireccion" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[call PA_LeeClientes(0,5,'');]]>
 	</queryString>
@@ -46,21 +51,42 @@
 		<band height="32" splitType="Stretch"/>
 	</title>
 	<pageHeader>
-		<band height="55" splitType="Stretch">
+		<band height="112" splitType="Stretch">
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="187" y="27" width="197" height="20" uuid="34fb1bb4-468b-4050-b9f0-ce9e92df73e4"/>
-				<textElement>
-					<font size="12"/>
+				<reportElement x="0" y="87" width="555" height="20" uuid="34fb1bb4-468b-4050-b9f0-ce9e92df73e4"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="126" y="7" width="309" height="20" uuid="bc3097ba-7b2f-457a-a6b7-2f599fe0b483"/>
-				<textElement>
+				<reportElement x="0" y="7" width="555" height="20" uuid="bc3097ba-7b2f-457a-a6b7-2f599fe0b483"/>
+				<textElement textAlignment="Center">
 					<font size="16" isBold="true"/>
 				</textElement>
 				<text><![CDATA[REPORTE GENERAL DE CLIENTES]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="0" y="27" width="555" height="20" uuid="ff41d557-ff10-44ac-969b-cda3191fa361"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{strNombre}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="47" width="555" height="20" uuid="1e75fdbf-fcc6-4728-b9d3-ace838831a45"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{strDireccion}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="67" width="555" height="20" uuid="bfd2fd5c-820a-4b97-80da-dd45f5490b04"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{strRFC}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>

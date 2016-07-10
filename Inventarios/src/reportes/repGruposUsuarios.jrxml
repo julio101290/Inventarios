@@ -3,6 +3,9 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
+	<parameter name="strNombre" class="java.lang.String"/>
+	<parameter name="strDireccion" class="java.lang.String"/>
+	<parameter name="strRFC" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[call PA_LeeGruposUsuarios (0,5,'')]]>
 	</queryString>
@@ -16,7 +19,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="66" splitType="Stretch">
+		<band height="112" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="572" height="22" uuid="9c2c9119-850f-44b2-b0fd-66fc6b9c3213"/>
 				<textElement textAlignment="Center">
@@ -24,10 +27,33 @@
 				</textElement>
 				<text><![CDATA[REPORTE DE GRUPOS DE USUARIO]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="0" y="62" width="572" height="20" uuid="e93baa9a-4df1-4cc9-b3c2-3727902c250a"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{strRFC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="42" width="572" height="20" uuid="fbabcd57-a7a0-41cb-9b90-6e7a7c98ddf5"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{strDireccion}]]></textFieldExpression>
+			</textField>
 			<textField pattern="EEEEE dd MMMMM yyyy">
-				<reportElement x="0" y="22" width="572" height="20" uuid="ae44c049-9996-438c-be89-ddcdd746b126"/>
-				<textElement textAlignment="Center"/>
+				<reportElement x="0" y="82" width="572" height="20" uuid="c7390a52-060f-489a-9b8a-83205008a977"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="22" width="572" height="20" uuid="d14ee9e7-4a7e-4d42-9c54-e5b6b4cc4f60"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{strNombre}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

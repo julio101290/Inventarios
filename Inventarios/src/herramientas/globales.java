@@ -97,7 +97,9 @@ import javax.swing.JOptionPane;
         int intDesde=0;
         int intCuantos=1000;
         String strBusqueda="";
-        
+
+        Combo.removeAllItems();
+      
       
         try{
          
